@@ -6,7 +6,7 @@ import {
   Footer,
   NavigationBar,
   Login,
-} from "./components/Main";
+} from "./components/Main/Index";
 
 // Main App Function Declaration
 function App() {
