@@ -1,0 +1,853 @@
+<table
+  ng-table="tableParams"
+  template-pagination="/Angular/Templates/ngTablePagerDashboard.html"
+  class="uk-table uk-table-nowrap table_check uk-table-striped ng-scope ng-table"
+  ng-show="new_schedule_total>0"
+>
+  <!-- ngInclude: templates.header -->
+  <thead ng-include="templates.header" class="ng-scope">
+    <tr class="ng-scope">
+      <!-- ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Schedule#
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        ></div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Schedule Amount
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Payment Type
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Submitted Date
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Submitted Time
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Created Date
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-class="{ 'sortable': parse(column.sortable), 'sort-asc': params.sorting()[parse(column.sortable)]=='asc', 'sort-desc': params.sorting()[parse(column.sortable)]=='desc' }"
+        ng-click="sortBy(column, $event)"
+        ng-show="column.show(this)"
+        ng-init="template=column.headerTemplateURL(this)"
+        class="header text-left ng-hide sortable"
+      >
+        <!-- ngIf: !template -->
+        <div
+          ng-if="!template"
+          ng-show="!template"
+          ng-bind="parse(column.title)"
+          class="ng-binding ng-scope"
+        >
+          Created Time
+        </div>
+        <!-- end ngIf: !template -->
+        <!-- ngIf: template -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+    </tr>
+    <tr ng-show="show_filter" class="ng-table-filters ng-scope ng-hide">
+      <!-- ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+      <th
+        ng-repeat="column in $columns"
+        ng-show="column.show(this)"
+        class="filter ng-scope ng-hide"
+      >
+        <!-- ngRepeat: (name, filter) in column.filter -->
+      </th>
+      <!-- end ngRepeat: column in $columns -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- ngRepeat: item in $data -->
+    <tr
+      ng-repeat="item in $data"
+      ng-class="item.isRowSelected==true ? 'selected':''"
+      class="ng-scope"
+    >
+      <td
+        data-title="labelList['Schedule']+'#'"
+        sortable="'schedule_number'"
+        width="120px"
+        header-class="text-left"
+        ng-attr-title="{{}}"
+        data-title-text="#"
+      >
+        <a ng-click="goToPendingSechedule(item)" class="ng-binding"
+          >000S-5565
+        </a>
+      </td>
+      <td
+        data-title="''"
+        header-class="text-left"
+        ng-show="!showCustomfield('CapitalNow')"
+        data-title-text=" "
+      >
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id>0"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/qb_icon.png"
+        /></i>
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id<=0 &amp;&amp; item.device_id !='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/ring.png"
+        /></i>
+        <i
+          class="material-icons md-24"
+          ng-show="item.quickbook_invoice_id<=0  &amp;&amp; item.device_id =='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/fflogo1.png"
+        /></i>
+      </td>
+      <td
+        data-title="labelList['Schedule Amount']"
+        sortable="'schedule_amount'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        10,000.00
+      </td>
+      <td
+        data-title="labelList['Payment Type']"
+        sortable="'method'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        ACH
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="labelList['Submitted Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="'Submitted '+labelList['Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text="Submitted "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >01/02/23</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        ng-show="showCustomfield('Integrity')||showCustomfield('FCS')"
+        data-title-text=" "
+        class="ng-hide"
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >05:27 AM</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+    </tr>
+    <!-- end ngRepeat: item in $data -->
+    <tr
+      ng-repeat="item in $data"
+      ng-class="item.isRowSelected==true ? 'selected':''"
+      class="ng-scope"
+    >
+      <td
+        data-title="labelList['Schedule']+'#'"
+        sortable="'schedule_number'"
+        width="120px"
+        header-class="text-left"
+        ng-attr-title="{{}}"
+        data-title-text="#"
+      >
+        <a ng-click="goToPendingSechedule(item)" class="ng-binding">0001 </a>
+      </td>
+      <td
+        data-title="''"
+        header-class="text-left"
+        ng-show="!showCustomfield('CapitalNow')"
+        data-title-text=" "
+      >
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id>0"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/qb_icon.png"
+        /></i>
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id<=0 &amp;&amp; item.device_id !='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/ring.png"
+        /></i>
+        <i
+          class="material-icons md-24"
+          ng-show="item.quickbook_invoice_id<=0  &amp;&amp; item.device_id =='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/fflogo1.png"
+        /></i>
+      </td>
+      <td
+        data-title="labelList['Schedule Amount']"
+        sortable="'schedule_amount'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        3,000.00
+      </td>
+      <td
+        data-title="labelList['Payment Type']"
+        sortable="'method'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        ACH
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="labelList['Submitted Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="'Submitted '+labelList['Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text="Submitted "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >01/02/23</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        ng-show="showCustomfield('Integrity')||showCustomfield('FCS')"
+        data-title-text=" "
+        class="ng-hide"
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >02:16 AM</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+    </tr>
+    <!-- end ngRepeat: item in $data -->
+    <tr
+      ng-repeat="item in $data"
+      ng-class="item.isRowSelected==true ? 'selected':''"
+      class="ng-scope"
+    >
+      <td
+        data-title="labelList['Schedule']+'#'"
+        sortable="'schedule_number'"
+        width="120px"
+        header-class="text-left"
+        ng-attr-title="{{}}"
+        data-title-text="#"
+      >
+        <a ng-click="goToPendingSechedule(item)" class="ng-binding"
+          >000S-5564
+        </a>
+      </td>
+      <td
+        data-title="''"
+        header-class="text-left"
+        ng-show="!showCustomfield('CapitalNow')"
+        data-title-text=" "
+      >
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id>0"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/qb_icon.png"
+        /></i>
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id<=0 &amp;&amp; item.device_id !='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/ring.png"
+        /></i>
+        <i
+          class="material-icons md-24"
+          ng-show="item.quickbook_invoice_id<=0  &amp;&amp; item.device_id =='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/fflogo1.png"
+        /></i>
+      </td>
+      <td
+        data-title="labelList['Schedule Amount']"
+        sortable="'schedule_amount'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        20,000.00
+      </td>
+      <td
+        data-title="labelList['Payment Type']"
+        sortable="'method'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        ACH
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="labelList['Submitted Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="'Submitted '+labelList['Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text="Submitted "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >31/01/23</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        ng-show="showCustomfield('Integrity')||showCustomfield('FCS')"
+        data-title-text=" "
+        class="ng-hide"
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >12:35 PM</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+    </tr>
+    <!-- end ngRepeat: item in $data -->
+    <tr
+      ng-repeat="item in $data"
+      ng-class="item.isRowSelected==true ? 'selected':''"
+      class="ng-scope"
+    >
+      <td
+        data-title="labelList['Schedule']+'#'"
+        sortable="'schedule_number'"
+        width="120px"
+        header-class="text-left"
+        ng-attr-title="{{}}"
+        data-title-text="#"
+      >
+        <a ng-click="goToPendingSechedule(item)" class="ng-binding">0004 </a>
+      </td>
+      <td
+        data-title="''"
+        header-class="text-left"
+        ng-show="!showCustomfield('CapitalNow')"
+        data-title-text=" "
+      >
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id>0"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/qb_icon.png"
+        /></i>
+        <i
+          class="material-icons md-24"
+          ng-show="item.quickbook_invoice_id<=0 &amp;&amp; item.device_id !='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/ring.png"
+        /></i>
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id<=0  &amp;&amp; item.device_id =='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/fflogo1.png"
+        /></i>
+      </td>
+      <td
+        data-title="labelList['Schedule Amount']"
+        sortable="'schedule_amount'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        1,500.00
+      </td>
+      <td
+        data-title="labelList['Payment Type']"
+        sortable="'method'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        Wire
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="labelList['Submitted Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="'Submitted '+labelList['Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text="Submitted "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >27/01/23</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        ng-show="showCustomfield('Integrity')||showCustomfield('FCS')"
+        data-title-text=" "
+        class="ng-hide"
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >04:52 AM</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+    </tr>
+    <!-- end ngRepeat: item in $data -->
+    <tr
+      ng-repeat="item in $data"
+      ng-class="item.isRowSelected==true ? 'selected':''"
+      class="ng-scope"
+    >
+      <td
+        data-title="labelList['Schedule']+'#'"
+        sortable="'schedule_number'"
+        width="120px"
+        header-class="text-left"
+        ng-attr-title="{{}}"
+        data-title-text="#"
+      >
+        <a ng-click="goToPendingSechedule(item)" class="ng-binding">0004 </a>
+      </td>
+      <td
+        data-title="''"
+        header-class="text-left"
+        ng-show="!showCustomfield('CapitalNow')"
+        data-title-text=" "
+      >
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id>0"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/qb_icon.png"
+        /></i>
+        <i
+          class="material-icons md-24"
+          ng-show="item.quickbook_invoice_id<=0 &amp;&amp; item.device_id !='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/ring.png"
+        /></i>
+        <i
+          class="material-icons md-24 ng-hide"
+          ng-show="item.quickbook_invoice_id<=0  &amp;&amp; item.device_id =='web'"
+        >
+          <img style="margin-top: -12px" src="../../../assets/img/fflogo1.png"
+        /></i>
+      </td>
+      <td
+        data-title="labelList['Schedule Amount']"
+        sortable="'schedule_amount'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        500.00
+      </td>
+      <td
+        data-title="labelList['Payment Type']"
+        sortable="'method'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+        class="ng-binding"
+      >
+        ACH
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="labelList['Submitted Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        ng-show="!showCustomfield('FCS')"
+        data-title="'Submitted '+labelList['Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text="Submitted "
+      >
+        <!-- ngIf: item.submitted_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.submitted_date_time =='1900-01-01T00:00:00' --><span
+          ng-if="item.submitted_date_time =='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+        >
+          NA </span
+        ><!-- end ngIf: item.submitted_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Date']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        data-title-text=" "
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >27/01/23</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+      <td
+        data-title="labelList['Created Time']"
+        sortable="'date'"
+        width="80px"
+        header-class="text-left"
+        ng-show="showCustomfield('Integrity')||showCustomfield('FCS')"
+        data-title-text=" "
+        class="ng-hide"
+      >
+        <!-- ngIf: item.created_date_time !='1900-01-01T00:00:00' --><span
+          ng-if="item.created_date_time !='1900-01-01T00:00:00'"
+          class="ng-binding ng-scope"
+          >04:31 AM</span
+        ><!-- end ngIf: item.created_date_time !='1900-01-01T00:00:00' --><!-- ngIf: item.created_date_time =='1900-01-01T00:00:00' -->
+      </td>
+    </tr>
+    <!-- end ngRepeat: item in $data -->
+  </tbody>
+</table>
