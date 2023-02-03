@@ -10,7 +10,7 @@ import {
 
 // Main App Function Declaration
 function App() {
-  const [message, setMessage] = useState(1); // useState for Count
+  const [message, setMessage] = useState(0); // useState for Count
   function getResponse(msg) {
     setMessage(msg);
   }
