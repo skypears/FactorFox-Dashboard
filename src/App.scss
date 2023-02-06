@@ -18,11 +18,9 @@ table a {
 
 .table-striped>tbody>tr:nth-of-type(odd)>* {
     --bs-table-accent-bg: #0dcaf008;
-
 }
 
 .btn-primary {
-
     --bs-btn-bg: var(--bs-primary-rgb);
 }
 
@@ -96,9 +94,7 @@ table a {
 }
 
 .search-section {
-
     max-width: 300px;
-
 }
 
 .theme-btn {
@@ -112,15 +108,10 @@ table a {
     cursor: pointer;
 }
 
-
-
 .px-4 {
     padding-left: 1rem !important;
     padding-right: 1rem !important;
 }
-
-
-
 
 .theme-nav ul.nav {
     background-color: var(--bs-primary-rgb);
@@ -134,15 +125,21 @@ table a {
         background-color: #1b417c;
     }
 
-    .dropdown .dropdown-toggle {
-        font-weight: 500;
-        border-radius: 0;
+    .dropdown {
+        .dropdown-toggle {
+            font-weight: 500;
+            border-radius: 0;
+            transition: all 500ms linear;
 
-        &:hover {
-            background-color: #1b417c;
+            &:hover {
+                background-color: #1b417c;
+            }
         }
     }
+}
 
+.dropdown.show .dropdown-toggle::after {
+    transform: rotate(180deg);
 }
 
 .btn-check:checked+.btn,
@@ -156,7 +153,6 @@ table a {
 }
 
 .dropdown-menu {
-
     border-radius: 0 !important;
 }
 
@@ -180,6 +176,7 @@ table a {
 .nav-pills {
     --bs-nav-pills-link-active-bg: var(--bs-primary-rgb);
     position: relative;
+
     .nav-link {
         border-radius: 0%;
         cursor: pointer;
@@ -188,7 +185,8 @@ table a {
     &.border-bottom {
         border-bottom: 2px solid #21529d !important;
     }
-    &:after{
+
+    &:after {
         content: "";
         display: block;
         width: 100%;
@@ -206,4 +204,12 @@ table a {
 
 *:focus {
     box-shadow: none !important;
+}
+
+.row-section .card-header.cursor-pointer {
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(224, 224, 224);
+    }
 }

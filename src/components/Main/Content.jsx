@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
   Container,
   Row,
   Col,
@@ -13,17 +9,20 @@ import {
   CardTitle,
   CardText,
   Button,
-  CardFooter,
   Nav,FormGroup,Input,Label,
   NavItem,
   NavLink,
   TabContent,
   TabPane,
   Table,
-  UncontrolledAccordion,
+  UncontrolledCollapse,
 } from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Pie } from "react-chartjs-2";
+import ColumnSection from "./ColumnSection";
+import RowSection from "./RowSection";
+import TabColumn from "./TabColumn";
+import PieChartColumn from "./PieChartColumn";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -33,7 +32,7 @@ const Content = () => {
   const [activeTabm2, setActiveTabm2] = useState("1");
   const [activeTabm3, setActiveTabm3] = useState("1");
 // chart data for pie chart
-  const data = {
+  const chartData = {
     labels: ["0-30", "31-60", "61-90", "90+"],
     datasets: [
       {
@@ -62,856 +61,591 @@ const Content = () => {
   return (
     <div className="content">
       <Container fluid>
-        <Row className="pt-3">
-          <Col sm="12">
-            <Card>
-              <CardHeader className="fw-bold">Performance</CardHeader>
-              <CardBody>
-                <Container fluid className="px-0">
+        <RowSection headerName="Performance">
+          <Col sm={4}>
+            <ColumnSection>
+              <TabColumn tabTitles={["ADV", "INV"]}>
+                <Row>
+                  <Col sm="12" className="pt-3">
+                    <Table striped responsive size="sm" className="small">
+                      <thead>
+                        <tr>
+                          <th className="text-left"></th>
+                          <th className="text-left"></th>
+                          <th className="text-right ng-binding">Count</th>
+
+                          <th className="text-right ng-binding">Advance Due</th>
+                          <th className="text-right">%</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          ng-if="!showCustomfield('CapitalNow')"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <b className="ng-binding">Total</b>
+                          </td>
+                          <td className="text-right ng-binding">751</td>
+                          <td className="text-right ng-binding">
+                            13,067,760.48
+                          </td>
+                          <td className="text-right"></td>
+                        </tr>
+
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              0-30
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">125</td>
+
+                          <td className="text-right ng-binding">156,886.66</td>
+                          <td className="text-right ng-binding">1.20</td>
+                        </tr>
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              31-60
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">39</td>
+
+                          <td className="text-right ng-binding">347,680.00</td>
+                          <td className="text-right ng-binding">2.66</td>
+                        </tr>
+
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              61-90
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">22</td>
+
+                          <td className="text-right ng-binding">24,499.00</td>
+                          <td className="text-right ng-binding">0.19</td>
+                        </tr>
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              90+
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">565</td>
+
+                          <td className="text-right ng-binding">
+                            12,538,694.82
+                          </td>
+                          <td className="text-right ng-binding">95.95</td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            colSpan="8"
+                            ng-if="ARList.length > 0"
+                            className="ng-scope"
+                          >
+                            <a
+                              href="#"
+                              ng-click="ShowMoreArInvoice()"
+                              className="ng-binding"
+                            >
+                              More
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
+
+                <Row>
+                  <Col sm="12" className="pt-3">
+                    <Table striped responsive size="sm" className="small">
+                      <thead>
+                        <tr>
+                          <th className="text-left"></th>
+                          <th className="text-left"></th>
+                          <th className="text-right ng-binding">Count</th>
+
+                          <th className="text-right ng-binding">Advance Due</th>
+                          <th className="text-right">%</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          ng-if="!showCustomfield('CapitalNow')"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <b className="ng-binding">Total</b>
+                          </td>
+                          <td className="text-right ng-binding">780</td>
+                          <td className="text-right ng-binding">
+                            14,729,304.58
+                          </td>
+                          <td className="text-right"></td>
+                        </tr>
+
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              0-30
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">45</td>
+
+                          <td className="text-right ng-binding">54,875.00</td>
+                          <td className="text-right ng-binding">0.37</td>
+                        </tr>
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              31-60
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">70</td>
+
+                          <td className="text-right ng-binding">412,220.00</td>
+                          <td className="text-right ng-binding">2.80</td>
+                        </tr>
+
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              61-90
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">19</td>
+
+                          <td className="text-right ng-binding">52,940.00</td>
+                          <td className="text-right ng-binding">0.36</td>
+                        </tr>
+                        <tr
+                          ng-if="ARList.length > 0"
+                          ng-repeat="item in resultValue=(ARList)"
+                          className="ng-scope"
+                        >
+                          <td></td>
+                          <td className="text-left">
+                            <a
+                              href="#"
+                              ng-click="GetDetailsOfData(item);"
+                              className="ng-binding"
+                            >
+                              90+
+                            </a>
+                          </td>
+                          <td className="text-right ng-binding">646</td>
+
+                          <td className="text-right ng-binding">
+                            14,209,269.58
+                          </td>
+                          <td className="text-right ng-binding">96.47</td>
+                        </tr>
+
+                        <tr>
+                          <td
+                            colSpan="8"
+                            ng-if="ARList.length > 0"
+                            className="ng-scope"
+                          >
+                            <a
+                              href="#"
+                              ng-click="ShowMoreArInvoice()"
+                              className="ng-binding"
+                            >
+                              More
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
+              </TabColumn>
+            </ColumnSection>
+          </Col>
+          <Col sm={4}>
+            <PieChartColumn
+              title="Aging Summary"
+              chartData={chartData}
+            ></PieChartColumn>
+          </Col>
+          <Col sm={4}>
+            <ColumnSection>
+              <TabColumn tabTitles={["Day", "Month", "YTD"]}>
+                <Row>
+                  <Col sm="12" className="pt-3">
+                    <Table striped responsive size="sm" className="small">
+                      <tbody>
+                        <tr>
+                          <td>Invoice Purchased by Invoice Date</td>
+                          <td className="text-right">€146,060.00</td>
+                        </tr>
+                        <tr>
+                          <td>Net Advances by Advance Date</td>
+                          <td className="text-right">€109,201.79</td>
+                        </tr>
+                        <tr>
+                          <td>Advance Discounts</td>
+                          <td className="text-right">€664.48</td>
+                        </tr>
+                        <tr>
+                          <td>Received Discounts</td>
+                          <td className="text-right">€559,258.06</td>
+                        </tr>
+                        <tr>
+                          <td>Total Receipts</td>
+                          <td className="text-right">€4,909,121.20</td>
+                        </tr>
+
+                        <tr>
+                          <td>Total Chargebacks</td>
+                          <td className="text-right">€800.00</td>
+                        </tr>
+                        <tr>
+                          <td>Advance Chargebacks</td>
+                          <td className="text-right">€800.00</td>
+                        </tr>
+                        <tr>
+                          <td>Discount Chargebacks</td>
+                          <td className="text-right">€0.00</td>
+                        </tr>
+
+                        <tr>
+                          <td>Paid Fuel Adv</td>
+                          <td className="text-right">€110.00</td>
+                        </tr>
+                        <tr>
+                          <td>Paid Pre-Funds</td>
+                          <td className="text-right">€0.00</td>
+                        </tr>
+                      </tbody>
+                    </Table>
+                  </Col>
+                </Row>
+              </TabColumn>
+            </ColumnSection>
+          </Col>
+        </RowSection>
+        <RowSection headerName="New Schedules">
+          <Col sm={4}>
+            <ColumnSection title="Recent Entries">
+              <Table striped responsive size="sm" className="small">
+                <thead className="small">
+                  <tr>
+                    <th>Schedule</th>
+                    <th></th>
+                    <th>Schedule Amount</th>
+                    <th>Payment Type</th>
+                    <th>Submitted Date</th>
+                    <th>Submitted Time</th>
+                    <th>Created Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <a href="#">000S-5565</a>
+                    </td>
+                    <td></td>
+                    <td>10,000.00</td>
+                    <td>ACH</td>
+                    <td>NA</td>
+                    <td>NA</td>
+                    <td>01/02/23</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">0001</a>
+                    </td>
+                    <td></td>
+                    <td>3,000.00</td>
+                    <td>ACH</td>
+                    <td>NA</td>
+                    <td>NA</td>
+                    <td>01/02/23</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">000S-5564</a>
+                    </td>
+                    <td></td>
+                    <td>20,000.00</td>
+                    <td>ACH</td>
+                    <td>NA</td>
+                    <td>NA</td>
+                    <td>01/02/23</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">0004</a>
+                    </td>
+                    <td></td>
+                    <td>1500.00</td>
+                    <td>ACH</td>
+                    <td>NA</td>
+                    <td>NA</td>
+                    <td>01/02/23</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <a href="#">0004</a>
+                    </td>
+                    <td></td>
+                    <td>1500.00</td>
+                    <td>ACH</td>
+                    <td>NA</td>
+                    <td>NA</td>
+                    <td>01/02/23</td>
+                  </tr>
+                </tbody>
+              </Table>
+            </ColumnSection>
+          </Col>
+          <Col sm={4}>
+            <ColumnSection title="Approved Advances">
+              <Table striped responsive size="sm" className="small">
+                <thead className="small">
+                  <tr>
+                    <th>Payment Type</th>
+                    <th>Total Schedule Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>EFT</td>
+                    <td>5,040,942.01</td>
+                  </tr>
+                  <tr>
+                    <td>ACH</td>
+                    <td>5,212,376.05</td>
+                  </tr>
+                  <tr>
+                    <td>EFS</td>
+                    <td>79,943.30</td>
+                  </tr>
+                  <tr>
+                    <td>COMDATA</td>
+                    <td>1,550.00</td>
+                  </tr>
+                  <tr>
+                    <td>CITI CC</td>
+                    <td>12,455.00</td>
+                  </tr>
+                </tbody>
+                <tfoot className="small">
+                  <tr>
+                    <th>Total Amount:</th>
+                    <th>210,747,771.36</th>
+                  </tr>
+                </tfoot>
+              </Table>
+            </ColumnSection>
+          </Col>
+          <Col sm={4}>
+            <ColumnSection title="Prospects">
+              <TabColumn tabTitles={["Customer", "Client"]}>
+                <TabPane tabId="1">
                   <Row>
-                    <Col sm="4">
-                      <Card>
-                        <CardBody>
-                          <Nav pills >
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm1 == "1" ? "active" : ""}
-                                onClick={() => setActiveTabm1("1")}
-                              >
-                                ADV
-                              </NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm1 == "2" ? "active" : ""}
-                                onClick={() => setActiveTabm1("2")}
-                              >
-                                INV
-                              </NavLink>
-                            </NavItem>
-                          </Nav>
-                          <TabContent activeTab={activeTabm1}>
-                            <TabPane tabId="1">
-                              <Row>
-                                <Col sm="12" className="pt-3">
-                                  <Table
-                                    striped
-                                    responsive
-                                    size="sm"
-                                    className="small"
-                                  >
-                                    <thead>
-                                      <tr>
-                                        <th className="text-left"></th>
-                                        <th className="text-left"></th>
-                                        <th className="text-right ng-binding">
-                                          Count
-                                        </th>
-
-                                        <th className="text-right ng-binding">
-                                          Advance Due
-                                        </th>
-                                        <th className="text-right">%</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr
-                                        ng-if="!showCustomfield('CapitalNow')"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <b className="ng-binding">Total</b>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          751
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          13,067,760.48
-                                        </td>
-                                        <td className="text-right"></td>
-                                      </tr>
-
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            0-30
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          125
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          156,886.66
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          1.20
-                                        </td>
-                                      </tr>
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            31-60
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          39
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          347,680.00
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          2.66
-                                        </td>
-                                      </tr>
-
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            61-90
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          22
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          24,499.00
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          0.19
-                                        </td>
-                                      </tr>
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            90+
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          565
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          12,538,694.82
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          95.95
-                                        </td>
-                                      </tr>
-
-                                      <tr>
-                                        <td
-                                          colSpan="8"
-                                          ng-if="ARList.length > 0"
-                                          className="ng-scope"
-                                        >
-                                          <a
-                                            href="#"
-                                            ng-click="ShowMoreArInvoice()"
-                                            className="ng-binding"
-                                          >
-                                            More
-                                          </a>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </Table>
-                                </Col>
-                              </Row>
-                            </TabPane>
-                            <TabPane tabId="2">
-                              <Row>
-                                <Col sm="12" className="pt-3">
-                                  <Table
-                                    striped
-                                    responsive
-                                    size="sm"
-                                    className="small"
-                                  >
-                                    <thead>
-                                      <tr>
-                                        <th className="text-left"></th>
-                                        <th className="text-left"></th>
-                                        <th className="text-right ng-binding">
-                                          Count
-                                        </th>
-
-                                        <th className="text-right ng-binding">
-                                          Advance Due
-                                        </th>
-                                        <th className="text-right">%</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr
-                                        ng-if="!showCustomfield('CapitalNow')"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <b className="ng-binding">Total</b>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          780
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          14,729,304.58
-                                        </td>
-                                        <td className="text-right"></td>
-                                      </tr>
-
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            0-30
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          45
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          54,875.00
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          0.37
-                                        </td>
-                                      </tr>
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            31-60
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          70
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          412,220.00
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          2.80
-                                        </td>
-                                      </tr>
-
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            61-90
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          19
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          52,940.00
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          0.36
-                                        </td>
-                                      </tr>
-                                      <tr
-                                        ng-if="ARList.length > 0"
-                                        ng-repeat="item in resultValue=(ARList)"
-                                        className="ng-scope"
-                                      >
-                                        <td></td>
-                                        <td className="text-left">
-                                          <a
-                                            href="#"
-                                            ng-click="GetDetailsOfData(item);"
-                                            className="ng-binding"
-                                          >
-                                            90+
-                                          </a>
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          646
-                                        </td>
-
-                                        <td className="text-right ng-binding">
-                                          14,209,269.58
-                                        </td>
-                                        <td className="text-right ng-binding">
-                                          96.47
-                                        </td>
-                                      </tr>
-
-                                      <tr>
-                                        <td
-                                          colSpan="8"
-                                          ng-if="ARList.length > 0"
-                                          className="ng-scope"
-                                        >
-                                          <a
-                                            href="#"
-                                            ng-click="ShowMoreArInvoice()"
-                                            className="ng-binding"
-                                          >
-                                            More
-                                          </a>
-                                        </td>
-                                      </tr>
-                                    </tbody>
-                                  </Table>
-                                </Col>
-                              </Row>
-                            </TabPane>
-                          </TabContent>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col sm="4">
-                      <Card>
-                        <CardHeader className="pt-3">
-                          <CardTitle className="mb-2">Aging Summary</CardTitle>
-                        </CardHeader>
-                        <CardBody>
-                          <Pie
-                            data={data}
-                            style={{ maxHeight: "360px" }}
-                            className="d-block mx-auto"
-                          />
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col sm="4">
-                      <Card>
-                        <CardBody>
-                          <Nav pills >
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm2 == "1" ? "active" : ""}
-                                onClick={() => setActiveTabm2("1")}
-                              >
-                                Day
-                              </NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm2 == "2" ? "active" : ""}
-                                onClick={() => setActiveTabm2("2")}
-                              >
-                                Month
-                              </NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm2 == "3" ? "active" : ""}
-                                onClick={() => setActiveTabm2("3")}
-                              >
-                                YTD
-                              </NavLink>
-                            </NavItem>
-                          </Nav>
-                          <TabContent activeTab={activeTabm2}>
-                            <TabPane tabId="1">
-                              <Row>
-                                <Col sm="12" className="pt-3">
-                                  <Table
-                                    striped
-                                    responsive
-                                    size="sm"
-                                    className="small"
-                                  >
-                                    <tbody>
-                                      <tr>
-                                        <td>
-                                          Invoice Purchased by Invoice Date
-                                        </td>
-                                        <td className="text-right">
-                                          €146,060.00
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>Net Advances by Advance Date</td>
-                                        <td className="text-right">
-                                          €109,201.79
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>Advance Discounts</td>
-                                        <td className="text-right">€664.48</td>
-                                      </tr>
-                                      <tr>
-                                        <td>Received Discounts</td>
-                                        <td className="text-right">
-                                          €559,258.06
-                                        </td>
-                                      </tr>
-                                      <tr>
-                                        <td>Total Receipts</td>
-                                        <td className="text-right">
-                                          €4,909,121.20
-                                        </td>
-                                      </tr>
-
-                                      <tr>
-                                        <td>Total Chargebacks</td>
-                                        <td className="text-right">€800.00</td>
-                                      </tr>
-                                      <tr>
-                                        <td>Advance Chargebacks</td>
-                                        <td className="text-right">€800.00</td>
-                                      </tr>
-                                      <tr>
-                                        <td>Discount Chargebacks</td>
-                                        <td className="text-right">€0.00</td>
-                                      </tr>
-
-                                      <tr>
-                                        <td>Paid Fuel Adv</td>
-                                        <td className="text-right">€110.00</td>
-                                      </tr>
-                                      <tr>
-                                        <td>Paid Pre-Funds</td>
-                                        <td className="text-right">€0.00</td>
-                                      </tr>
-                                    </tbody>
-                                  </Table>
-                                </Col>
-                              </Row>
-                            </TabPane>
-                            <TabPane tabId="2">
-                              <Row>
-                                <Col sm="12">
-                                  <Card body className="border-0">
-                                    <CardTitle>
-                                      Special Title Treatment
-                                    </CardTitle>
-                                    <CardText>
-                                      With supporting text below as a natural
-                                      lead-in to additional content.
-                                    </CardText>
-                                    <Button>Go somewhere</Button>
-                                  </Card>
-                                </Col>
-                              </Row>
-                            </TabPane>
-                          </TabContent>
-                        </CardBody>
-                      </Card>
+                    <Col sm="12" className="pt-3">
+                      <Table striped responsive size="sm" className="small">
+                        <thead className="small">
+                          <tr>
+                            <th>Company</th>
+                            <th>Motor Carrier</th>
+                            <th>Phone#</th>
+                            <th>Created By</th>
+                            <th>Submitted Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="#">Aptimust Customer </a>
+                            </td>
+                            <td>19022023</td>
+                            <td>987678765</td>
+                            <td>Arlen</td>
+                            <td>30/09/22</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">Dispin Prospective Customer</a>
+                            </td>
+                            <td>545</td>
+                            <td>987678765</td>
+                            <td>Arlen</td>
+                            <td>30/09/22</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">Doms Prospective Customer</a>
+                            </td>
+                            <td>0</td>
+                            <td>987678765</td>
+                            <td>Arlen</td>
+                            <td>30/09/22</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">dsfds</a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">Aptimust Customer</a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+                      </Table>
                     </Col>
                   </Row>
-                </Container>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <Row className="pt-3">
-          <Col sm="12">
-            <Card>
-              <CardHeader>
-                <CardTitle className="fw-bold">New Schedules</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Container fluid className="px-0">
+                </TabPane>
+                <TabPane tabId="2">
                   <Row>
-                    <Col sm="4">
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>
-                            <div className="d-flex justify-content-between">
-                              <span>Recent Entries</span>
-                              <FormGroup check>
-                                <Label check>Show All</Label>
-                                <Input type="checkbox" />
-                              </FormGroup>
-                            </div>
-                          </CardTitle>
-                        </CardHeader>
-                        <CardBody>
-                          <Table striped responsive size="sm" className="small">
-                            <thead className="small">
-                              <tr>
-                                <th>Schedule</th>
-                                <th></th>
-                                <th>Schedule Amount</th>
-                                <th>Payment Type</th>
-                                <th>Submitted Date</th>
-                                <th>Submitted Time</th>
-                                <th>Created Date</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <a href="#">000S-5565</a>
-                                </td>
-                                <td></td>
-                                <td>10,000.00</td>
-                                <td>ACH</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>01/02/23</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <a href="#">0001</a>
-                                </td>
-                                <td></td>
-                                <td>3,000.00</td>
-                                <td>ACH</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>01/02/23</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <a href="#">000S-5564</a>
-                                </td>
-                                <td></td>
-                                <td>20,000.00</td>
-                                <td>ACH</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>01/02/23</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <a href="#">0004</a>
-                                </td>
-                                <td></td>
-                                <td>1500.00</td>
-                                <td>ACH</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>01/02/23</td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <a href="#">0004</a>
-                                </td>
-                                <td></td>
-                                <td>1500.00</td>
-                                <td>ACH</td>
-                                <td>NA</td>
-                                <td>NA</td>
-                                <td>01/02/23</td>
-                              </tr>
-                            </tbody>
-                          </Table>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col sm="4">
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>
-                            <div className="d-flex justify-content-between">
-                              <span>Recent Entries</span>
-                              <FormGroup check>
-                                <Label check>Show All</Label>
-                                <Input type="checkbox" />
-                              </FormGroup>
-                            </div>
-                          </CardTitle>
-                        </CardHeader>
-                        <CardBody>
-                          <Table striped responsive size="sm" className="small">
-                            <thead className="small">
-                              <tr>
-                                <th>Payment Type</th>
-                                <th>Total Schedule Amount</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>EFT</td>
-                                <td>5,040,942.01</td>
-                              </tr>
-                              <tr>
-                                <td>ACH</td>
-                                <td>5,212,376.05</td>
-                              </tr>
-                              <tr>
-                                <td>EFS</td>
-                                <td>79,943.30</td>
-                              </tr>
-                              <tr>
-                                <td>COMDATA</td>
-                                <td>1,550.00</td>
-                              </tr>
-                              <tr>
-                                <td>CITI CC</td>
-                                <td>12,455.00</td>
-                              </tr>
-                            </tbody>
-                            <tfoot className="small">
-                              <tr>
-                                <th>Total Amount:</th>
-                                <th>210,747,771.36</th>
-                              </tr>
-                            </tfoot>
-                          </Table>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                    <Col sm="4">
-                      <Card>
-                        <CardHeader>
-                          <CardTitle>
-                            <div className="d-flex justify-content-between">
-                              <span>Prospects</span>
-                              <FormGroup check>
-                                <Label check>Show All</Label>
-                                <Input type="checkbox" />
-                              </FormGroup>
-                            </div>
-                          </CardTitle>
-                        </CardHeader>
-                        <CardBody>
-                          <Nav pills >
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm3 == "1" ? "active" : ""}
-                                onClick={() => setActiveTabm3("1")}
-                              >
-                                Customer
-                              </NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <NavLink
-                                className={activeTabm3 == "2" ? "active" : ""}
-                                onClick={() => setActiveTabm3("2")}
-                              >
-                                Client
-                              </NavLink>
-                            </NavItem>
-                          </Nav>
-                          <TabContent activeTab={activeTabm3}>
-                            <TabPane tabId="1">
-                              <Row>
-                                <Col sm="12" className="pt-3">
-                                  <Table
-                                    striped
-                                    responsive
-                                    size="sm"
-                                    className="small"
-                                  >
-                                    <thead className="small">
-                                      <tr>
-                                        <th>Company</th>
-                                        <th>Motor Carrier</th>
-                                        <th>Phone#</th>
-                                        <th>Created By</th>
-                                        <th>Submitted Date</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td>
-                                          <a href="#">Aptimust Customer </a>
-                                        </td>
-                                        <td>19022023</td>
-                                        <td>987678765</td>
-                                        <td>Arlen</td>
-                                        <td>30/09/22</td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">
-                                            Dispin Prospective Customer
-                                          </a>
-                                        </td>
-                                        <td>545</td>
-                                        <td>987678765</td>
-                                        <td>Arlen</td>
-                                        <td>30/09/22</td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">
-                                            Doms Prospective Customer
-                                          </a>
-                                        </td>
-                                        <td>0</td>
-                                        <td>987678765</td>
-                                        <td>Arlen</td>
-                                        <td>30/09/22</td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">dsfds</a>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">Aptimust Customer</a>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
-                                    </tbody>
-                                  </Table>
-                                </Col>
-                              </Row>
-                            </TabPane>
-                            <TabPane tabId="2">
-                              <Row>
-                                <Col sm="12" className="pt-3">
-                                  <Table
-                                    striped
-                                    responsive
-                                    size="sm"
-                                    className="small"
-                                  >
-                                    <thead className="small">
-                                      <tr>
-                                        <th>Company</th>
-                                        <th>Motor Carrier</th>
-                                        <th>Phone#</th>
-                                        <th>Created By</th>
-                                        <th>Submitted Date</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td>
-                                          <a href="#">Aptimust Customer </a>
-                                        </td>
-                                        <td>19022023</td>
-                                        <td>987678765</td>
-                                        <td>Arlen</td>
-                                        <td>30/09/22</td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">
-                                            Dispin Prospective Customer
-                                          </a>
-                                        </td>
-                                        <td>545</td>
-                                        <td>987678765</td>
-                                        <td>Arlen</td>
-                                        <td>30/09/22</td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">
-                                            Doms Prospective Customer
-                                          </a>
-                                        </td>
-                                        <td>0</td>
-                                        <td>987678765</td>
-                                        <td>Arlen</td>
-                                        <td>30/09/22</td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">dsfds</a>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
-                                      <tr>
-                                        <td>
-                                          {" "}
-                                          <a href="#">Aptimust Customer</a>
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                      </tr>
-                                    </tbody>
-                                  </Table>
-                                </Col>
-                              </Row>
-                            </TabPane>
-                          </TabContent>
-                        </CardBody>
-                      </Card>
+                    <Col sm="12" className="pt-3">
+                      <Table striped responsive size="sm" className="small">
+                        <thead className="small">
+                          <tr>
+                            <th>Company</th>
+                            <th>Motor Carrier</th>
+                            <th>Phone#</th>
+                            <th>Created By</th>
+                            <th>Submitted Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>
+                              <a href="#">Aptimust Customer </a>
+                            </td>
+                            <td>19022023</td>
+                            <td>987678765</td>
+                            <td>Arlen</td>
+                            <td>30/09/22</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">Dispin Prospective Customer</a>
+                            </td>
+                            <td>545</td>
+                            <td>987678765</td>
+                            <td>Arlen</td>
+                            <td>30/09/22</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">Doms Prospective Customer</a>
+                            </td>
+                            <td>0</td>
+                            <td>987678765</td>
+                            <td>Arlen</td>
+                            <td>30/09/22</td>
+                          </tr>
+                          <tr>
+                            <td>
+                              
+                              <a href="#">dsfds</a>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        
+                        </tbody>
+                      </Table>
                     </Col>
                   </Row>
-                </Container>
-              </CardBody>
-            </Card>
+                </TabPane>
+              </TabColumn>
+            </ColumnSection>
           </Col>
-        </Row>
+        </RowSection>
+      
       </Container>
     </div>
   );

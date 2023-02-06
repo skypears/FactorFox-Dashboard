@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  Nav, NavItem, NavLink, Dropdown, DropdownToggle,
-  DropdownMenu, DropdownItem, UncontrolledDropdown, InputGroup, Input, Button } from "reactstrap";
+  Nav,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  UncontrolledDropdown,
+  InputGroup,
+  Input,
+  Button,
+} from "reactstrap";
 const Header = (args) => {
-
- 
   return (
     <div className="header-section">
       <div className="logo-section">
@@ -13,16 +18,19 @@ const Header = (args) => {
       <div className="search-section ms-auto">
         <InputGroup>
           <Input />
-          <Button><i className="bi bi-search"></i> </Button>
+          <Button>
+            <i className="bi bi-search"></i>{" "}
+          </Button>
         </InputGroup>
       </div>
       <div className="menu-section">
         <Nav>
-         
           <UncontrolledDropdown nav direction="down">
             <DropdownToggle caret color="transparent">
-              <i className="bi bi-person-fill pe-2"></i>
-              <span>Atul Yadav</span>
+              <span className="pe-none">
+                <i className="bi bi-person-fill pe-2 fs-5"></i>
+                <span>Atul Yadav</span>
+              </span>
             </DropdownToggle>
             <DropdownMenu {...args}>
               <DropdownItem>Some Action</DropdownItem>
@@ -34,5 +42,4 @@ const Header = (args) => {
     </div>
   );
 };
-
 export default Header;
