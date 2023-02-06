@@ -22,8 +22,12 @@ const ColumnSection = ({ title, children }) => {
             <div className="d-flex justify-content-between">
               <span>{title}</span>
               <FormGroup check>
-                <Label check>Show All</Label>
-                <Input type="checkbox" />
+                <Label check>
+                   <Input type="checkbox" />
+                  Show All
+                
+                </Label>
+               
               </FormGroup>
             </div>
           </CardTitle>

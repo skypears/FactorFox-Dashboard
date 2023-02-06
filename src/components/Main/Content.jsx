@@ -1,36 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Container,
   Row,
   Col,
-  Card,
-  CardHeader,
-  CardBody,
-  CardTitle,
-  CardText,
-  Button,
-  Nav,FormGroup,Input,Label,
-  NavItem,
-  NavLink,
-  TabContent,
+  
   TabPane,
   Table,
-  UncontrolledCollapse,
 } from "reactstrap";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Pie } from "react-chartjs-2";
-import ColumnSection from "./ColumnSection";
-import RowSection from "./RowSection";
-import TabColumn from "./TabColumn";
-import PieChartColumn from "./PieChartColumn";
+// import { Pie } from "react-chartjs-2";
+import {ColumnSection, RowSection, TabColumn, PieChartColumn} from "../Main";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Content = () => {
-
-  const [activeTabm1, setActiveTabm1] = useState("1");
-  const [activeTabm2, setActiveTabm2] = useState("1");
-  const [activeTabm3, setActiveTabm3] = useState("1");
 // chart data for pie chart
   const chartData = {
     labels: ["0-30", "31-60", "61-90", "90+"],
@@ -625,17 +608,6 @@ const Content = () => {
                             <td>Arlen</td>
                             <td>30/09/22</td>
                           </tr>
-                          <tr>
-                            <td>
-                              
-                              <a href="#">dsfds</a>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                          </tr>
-                        
                         </tbody>
                       </Table>
                     </Col>
