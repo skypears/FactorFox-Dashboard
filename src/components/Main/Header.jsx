@@ -15,7 +15,7 @@ const Header = (args) => {
       <div className="logo-section">
         <img src="./assets/images/fflogo.png" alt="" />
       </div>
-      <div className="search-section ms-auto">
+      <div className="search-section ms-auto d-none d-md-block">
         <InputGroup>
           <Input />
           <Button>
@@ -26,10 +26,15 @@ const Header = (args) => {
       <div className="menu-section">
         <Nav>
           <UncontrolledDropdown nav direction="down">
-            <DropdownToggle caret color="transparent">
+            <DropdownToggle caret color="transparent" className="text-start ">
               <span className="pe-none">
                 <i className="bi bi-person-fill pe-2 fs-5"></i>
-                <span>Atul Yadav</span>
+                <span className="">
+                  <span>Atul Yadav </span><br/>
+                  <span className="small text-black-50">
+                    Tulip Financial Systems, Inc. 1
+                  </span>
+                </span>
               </span>
             </DropdownToggle>
             <DropdownMenu {...args}>

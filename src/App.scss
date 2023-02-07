@@ -213,3 +213,12 @@ table a {
         background-color: rgb(224, 224, 224);
     }
 }
+@media only screen and (min-width:767.98px){
+    .row {
+        --bs-gutter-y:0.5rem;
+        .col-lg-4:not(:first-child):not(:last-child) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    }
+}

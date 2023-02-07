@@ -45,7 +45,7 @@ const Content = () => {
     <div className="content">
       <Container fluid>
         <RowSection headerName="Performance">
-          <Col sm={4}>
+          <Col md={6} lg={4}>
             <ColumnSection>
               <TabColumn tabTitles={["ADV", "INV"]}>
                 <Row>
@@ -316,13 +316,13 @@ const Content = () => {
               </TabColumn>
             </ColumnSection>
           </Col>
-          <Col sm={4}>
+          <Col md={6} lg={4}>
             <PieChartColumn
               title="Aging Summary"
               chartData={chartData}
             ></PieChartColumn>
           </Col>
-          <Col sm={4}>
+          <Col md={6} lg={4}>
             <ColumnSection>
               <TabColumn tabTitles={["Day", "Month", "YTD"]}>
                 <Row>
@@ -380,7 +380,7 @@ const Content = () => {
           </Col>
         </RowSection>
         <RowSection headerName="New Schedules">
-          <Col sm={4}>
+          <Col md={6} lg={4}>
             <ColumnSection title="Recent Entries">
               <Table striped responsive size="sm" className="small">
                 <thead className="small">
@@ -454,7 +454,7 @@ const Content = () => {
               </Table>
             </ColumnSection>
           </Col>
-          <Col sm={4}>
+          <Col md={6} lg={4}>
             <ColumnSection title="Approved Advances">
               <Table striped responsive size="sm" className="small">
                 <thead className="small">
@@ -494,7 +494,7 @@ const Content = () => {
               </Table>
             </ColumnSection>
           </Col>
-          <Col sm={4}>
+          <Col md={6} lg={4}>
             <ColumnSection title="Prospects">
               <TabColumn tabTitles={["Customer", "Client"]}>
                 <TabPane tabId="1">

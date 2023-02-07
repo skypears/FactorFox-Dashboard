@@ -28,7 +28,7 @@ const RowSection = ({ headerName, children }) => {
             </Button>
           </CardHeader>
           <Collapse isOpen={isOpen}>
-            <CardBody>
+            <CardBody className='p-2'>
               <Container fluid className="px-0">
                 <Row>{children}</Row>
               </Container>
