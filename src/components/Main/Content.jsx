@@ -3,7 +3,6 @@ import {
   Container,
   Row,
   Col,
-  
   TabPane,
   Table,
 } from "reactstrap";

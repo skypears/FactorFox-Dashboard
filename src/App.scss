@@ -222,3 +222,9 @@ table a {
     }
     }
 }
+
+@media (max-width: 576px) {
+    .header-section {
+        padding: 0;
+    }
+}

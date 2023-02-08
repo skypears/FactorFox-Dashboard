@@ -33,7 +33,7 @@ const NavigationBar = (args) => {
           </NavItem>
         ))}
         <UncontrolledDropdown nav direction="down">
-          <DropdownToggle color="transparent" className="text-white">
+          <DropdownToggle color="transparent" className="text-white nav-link">
             <i className="bi bi-grip-horizontal pe-none"></i>
           </DropdownToggle>
           <DropdownMenu {...args}>
