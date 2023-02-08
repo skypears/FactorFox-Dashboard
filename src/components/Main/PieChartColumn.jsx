@@ -9,7 +9,7 @@ const PieChartColumn = ({ title, chartData }) => {
       <CardHeader className="pt-3">
         <CardTitle className="mb-2">{title}</CardTitle>
       </CardHeader>
-      <CardBody className='overflow-scroll'>
+      <CardBody className='overflow-auto'>
         <Pie
           data={chartData}
           style={{ maxHeight: "360px" }}
