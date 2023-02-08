@@ -1,6 +1,4 @@
-import { clippingParents } from "@popperjs/core";
 import React from "react";
-import { Form, FormGroup, Label, Input } from "reactstrap";
 
 const Login = ({ getResponse }) => {
   let msg = 1;

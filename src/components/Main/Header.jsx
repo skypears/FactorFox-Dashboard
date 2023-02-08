@@ -11,7 +11,7 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import { LeftSidebar, CompanyLogo, RightSideBar } from "../Main";
+import { LeftSidebar, CompanyLogo, RightSideBar } from "./";
 const mainMenuItems = [
   { name: "Let's Chat", icon: "chat" },
   { name: "Calender", icon: "calendar" },
