@@ -7,7 +7,7 @@ const RowSection = ({ headerName, children }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <Row className="pt-3 row-section" id={hid+'-row-section'}>
+    <Row className="row-section" id={hid+'-row-section'}>
       <Col sm="12">
         <Card>
           <CardHeader

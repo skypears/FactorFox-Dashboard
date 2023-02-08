@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React from "react";
+import { useMediaQuery } from "react-responsive";
 import {
   Nav,
   NavItem,
@@ -11,6 +12,7 @@ import {
 } from "reactstrap";
 
 const NavigationBar = (args) => {
+  const media768 = useMediaQuery({ query: "(min-width: 768px)" });
   const navitems = [
     "Dashboard",
     "Setup",
@@ -25,22 +27,33 @@ const NavigationBar = (args) => {
   return (
     <div className="theme-nav">
       <Nav className="ps-3">
-        {navitems.map((item, index) => (
-          <NavItem key={index}>
-            <NavLink active href="#">
-              {item}
-            </NavLink>
-          </NavItem>
-        ))}
-        <UncontrolledDropdown nav direction="down">
-          <DropdownToggle color="transparent" className="text-white nav-link">
-            <i className="bi bi-grip-horizontal pe-none"></i>
-          </DropdownToggle>
-          <DropdownMenu {...args}>
-            <DropdownItem>Some Action</DropdownItem>
-            <DropdownItem>Dropdown Item Text</DropdownItem>
-          </DropdownMenu>
-        </UncontrolledDropdown>
+        {media768 ? (
+          <>
+            {navitems.map((item, index) => (
+              <NavItem key={index}>
+                <NavLink active href="#">
+                  {item}
+                </NavLink>
+              </NavItem>
+            ))}
+
+          </>
+        ) : (
+          <UncontrolledDropdown nav direction="down">
+            <DropdownToggle
+              caret
+              color="transparent"
+              className="text-white nav-link"
+            >
+              Header Menu
+            </DropdownToggle>
+            <DropdownMenu>
+              {navitems.map((item, index) => (
+                <DropdownItem key={index}>{item}</DropdownItem>
+              ))}
+            </DropdownMenu>
+          </UncontrolledDropdown>
+        )}
       </Nav>
     </div>
   );

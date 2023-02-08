@@ -17,7 +17,7 @@ const LeftSidebar = ({ icon }) => {
   return (
     <div>
       <Button
-        color="transparent"
+        color="link"
         className="fs-2"
         onClick={() => {
           setShow(true);
@@ -37,7 +37,7 @@ const LeftSidebar = ({ icon }) => {
             setShow(false);
           }}
         >
-          <CompanyLogo height={30} />
+          <CompanyLogo />
         </OffcanvasHeader>
         <OffcanvasBody>
           <Nav vertical>

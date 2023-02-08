@@ -1,13 +1,13 @@
 import React , { useState } from 'react'
 import { Button, Offcanvas, OffcanvasHeader, OffcanvasBody, Nav, NavItem, NavLink } from 'reactstrap'
 
-const RightSideBar = ({icon}) => {
+const RightSideBar = ({icon, className}) => {
   const [show, setShow] = useState(false);
   return (
     <>
       <Button
-              color="transparent"
-        className="fs-2"
+              color="link"
+        className={`fs-5 ${className}`}
   
         onClick={() => {
           setShow(true);

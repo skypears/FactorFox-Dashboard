@@ -1,25 +1,22 @@
 import React from 'react'
+import { useMediaQuery } from "react-responsive";
 
-const CompanyLogo = ({height}) => {
+const CompanyLogo = ({ height, shrinkOnSmallScreen }) => {
+  const below576 = useMediaQuery({ query: "(max-width: 576px)" });
+  // set  default height to 30px using default props
+  height = height || "30";
   const logourl = "./assets/images/fflogo.png";
-  const slimlgo = "./assets/images/logo-slim.png";
-    
+  const logoalt = "./assets/images/logo-slim.png";
+
   return (
     <>
-      <img
-        src={logourl}
-        className="img-fluid d-none d-sm-block"
-        alt="company-logo"
-        height={height}
-      />
-      <img
-        src={slimlgo}
-        className="img-fluid d-block d-sm-none"
-        alt="company-logo"
-        height={height}
-      />
+      {below576 && shrinkOnSmallScreen ? (
+        <img src={logoalt} alt="company-logo" height={height} />
+      ) : (
+        <img src={logourl} alt="company-logo" height={height} />
+      )}
     </>
   );
-}
+};
 
 export default CompanyLogo

@@ -42,15 +42,15 @@ const Content = () => {
   };
   return (
     <div className="content">
-      <Container fluid>
+      <Container fluid className="pt-3">
         <RowSection headerName="Performance">
-          <Col md={6} lg={4}>
+          <Col xl={4} md={6}>
             <ColumnSection>
               <TabColumn tabTitles={["ADV", "INV"]}>
                 <Row>
                   <Col sm="12" className="pt-3">
                     <Table striped responsive size="sm" className="small">
-                      <thead>
+                      <thead className="small">
                         <tr>
                           <th className="text-left"></th>
                           <th className="text-left"></th>
@@ -60,7 +60,7 @@ const Content = () => {
                           <th className="text-right">%</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody className="small">
                         <tr
                           ng-if="!showCustomfield('CapitalNow')"
                           className="ng-scope"
@@ -315,19 +315,19 @@ const Content = () => {
               </TabColumn>
             </ColumnSection>
           </Col>
-          <Col md={6} lg={4}>
+          <Col xl={4} md={6}>
             <PieChartColumn
               title="Aging Summary"
               chartData={chartData}
             ></PieChartColumn>
           </Col>
-          <Col md={6} lg={4}>
+          <Col xl={4} md={6}>
             <ColumnSection>
               <TabColumn tabTitles={["Day", "Month", "YTD"]}>
                 <Row>
                   <Col sm="12" className="pt-3">
                     <Table striped responsive size="sm" className="small">
-                      <tbody>
+                      <tbody className="small">
                         <tr>
                           <td>Invoice Purchased by Invoice Date</td>
                           <td className="text-right">€146,060.00</td>
@@ -379,7 +379,7 @@ const Content = () => {
           </Col>
         </RowSection>
         <RowSection headerName="New Schedules">
-          <Col md={6} lg={4}>
+          <Col xl={4} md={6}>
             <ColumnSection title="Recent Entries">
               <Table striped responsive size="sm" className="small">
                 <thead className="small">
@@ -393,7 +393,7 @@ const Content = () => {
                     <th>Created Date</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="small">
                   <tr>
                     <td>
                       <a href="#">000S-5565</a>
@@ -453,7 +453,7 @@ const Content = () => {
               </Table>
             </ColumnSection>
           </Col>
-          <Col md={6} lg={4}>
+          <Col xl={4} md={6}>
             <ColumnSection title="Approved Advances">
               <Table striped responsive size="sm" className="small">
                 <thead className="small">
@@ -462,7 +462,7 @@ const Content = () => {
                     <th>Total Schedule Amount</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className="small">
                   <tr>
                     <td>EFT</td>
                     <td>5,040,942.01</td>
@@ -493,7 +493,7 @@ const Content = () => {
               </Table>
             </ColumnSection>
           </Col>
-          <Col md={6} lg={4}>
+          <Col xl={4} md={6}>
             <ColumnSection title="Prospects">
               <TabColumn tabTitles={["Customer", "Client"]}>
                 <TabPane tabId="1">
@@ -509,7 +509,7 @@ const Content = () => {
                             <th>Submitted Date</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="small">
                           <tr>
                             <td>
                               <a href="#">Aptimust Customer </a>
@@ -521,7 +521,6 @@ const Content = () => {
                           </tr>
                           <tr>
                             <td>
-                              
                               <a href="#">Dispin Prospective Customer</a>
                             </td>
                             <td>545</td>
@@ -531,7 +530,6 @@ const Content = () => {
                           </tr>
                           <tr>
                             <td>
-                              
                               <a href="#">Doms Prospective Customer</a>
                             </td>
                             <td>0</td>
@@ -541,7 +539,6 @@ const Content = () => {
                           </tr>
                           <tr>
                             <td>
-                              
                               <a href="#">dsfds</a>
                             </td>
                             <td></td>
@@ -551,7 +548,6 @@ const Content = () => {
                           </tr>
                           <tr>
                             <td>
-                              
                               <a href="#">Aptimust Customer</a>
                             </td>
                             <td></td>
@@ -577,7 +573,7 @@ const Content = () => {
                             <th>Submitted Date</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="small">
                           <tr>
                             <td>
                               <a href="#">Aptimust Customer </a>
@@ -589,7 +585,6 @@ const Content = () => {
                           </tr>
                           <tr>
                             <td>
-                              
                               <a href="#">Dispin Prospective Customer</a>
                             </td>
                             <td>545</td>
@@ -599,7 +594,6 @@ const Content = () => {
                           </tr>
                           <tr>
                             <td>
-                              
                               <a href="#">Doms Prospective Customer</a>
                             </td>
                             <td>0</td>
@@ -616,7 +610,6 @@ const Content = () => {
             </ColumnSection>
           </Col>
         </RowSection>
-      
       </Container>
     </div>
   );
