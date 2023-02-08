@@ -9,7 +9,7 @@ import {
   NavLink,
   Collapse,
 } from "reactstrap";
-import { CompanyLogo } from "../Main";
+import { CompanyLogo } from "./";
 
 
 const LeftSidebar = ({ icon }) => {
