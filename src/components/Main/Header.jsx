@@ -53,7 +53,7 @@ const Header = (args) => {
           </UncontrolledDropdown>
         </Nav>
       </div>
-      <div className="search-section d-none d-md-block">
+      <div className="search-section d-none d-md-block px-4">
         <InputGroup size="sm">
           <Input placeholder="Search" />
           <Button>
