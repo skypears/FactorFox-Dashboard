@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useEffect} from "react";
+
 import {
   Container,
   Row,
@@ -13,7 +14,22 @@ import {ColumnSection, RowSection, TabColumn, PieChartColumn} from "./Index";
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const Content = () => {
-// chart data for pie chart
+  // set card height equal
+  const setCardHeight = () => {
+    const rs = document.querySelectorAll(".row-section");
+    rs.forEach((r) => {
+      const cards = r.querySelectorAll(".collapse .card");
+      const cardHeight = Math.max(
+        ...Array.from(cards).map((c) => c.clientHeight)
+      );
+
+      cards.forEach((c) => {
+        c.style.height = `${cardHeight}px`;
+        c.style.maxHeight = "500px";
+      });
+    });
+  };
+  // chart data for pie chart
   const chartData = {
     labels: ["0-30", "31-60", "61-90", "90+"],
     datasets: [
@@ -40,6 +56,9 @@ const Content = () => {
       },
     ],
   };
+  useEffect(() => {
+    setCardHeight();
+  }, []);
   return (
     <div className="content">
       <Container fluid className="pt-3">
