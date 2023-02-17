@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./components/styles/_all.scss";
 import DashboardPage from "./components/pages/Dashboard/Index";
 import {Login, ForgotPassword} from "./components/pages/Login/Index";
 import { Routes, Route } from "react-router-dom";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Routes>
