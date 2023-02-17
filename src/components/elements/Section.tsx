@@ -1,23 +1,23 @@
-import React, {useState} from 'react'
-import { Row, Col, Card, CardHeader, CardBody, Container, Button, Collapse } from 'reactstrap'
+import React, { useState } from 'react'
+import { Row, Col, Card, CardHeader, Button, Collapse, CardBody, Container } from 'reactstrap'
 
-const RowSection = ({ headerName, children }) => {
-// remove whitespace and add '-' to headerName
-  const hid = headerName.replace(/\s+/g, "-").toLowerCase();
-  const [isOpen, setIsOpen] = useState(true);
-
+interface SectionProps {
+    sectionName: string;
+    children: React.ReactNode;
+}
+const Section = ({ sectionName, children }: SectionProps) => {
+    const [isOpen, setIsOpen] = useState(true);
   return (
-    <Row className="row-section" id={hid+'-row-section'}>
+     <Row className="section" >
       <Col sm="12">
         <Card>
           <CardHeader
             className="fw-bold d-flex align-items-center cursor-pointer"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <span>{headerName}</span>
+            <span>{sectionName}</span>
             <Button
               color="transparent"
-              
               className="ms-auto py-0"
             >
               <i
@@ -37,7 +37,7 @@ const RowSection = ({ headerName, children }) => {
         </Card>
       </Col>
     </Row>
-  );
-};
+  )
+}
 
-export default RowSection
+export default Section

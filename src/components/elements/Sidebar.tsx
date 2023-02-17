@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import {
   Button,
   Offcanvas,
@@ -7,12 +8,16 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Collapse,
 } from "reactstrap";
-import { CompanyLogo } from "./Index";
+import { Direction } from "reactstrap/types/lib/Offcanvas";
+import Logo from "./Logo";
 
-
-const LeftSidebar = ({ icon }) => {
+interface SidebarProps {
+  icon: string;
+    dir?: Direction;
+    logo?: boolean;
+}
+const Sidebar = ({ icon, dir, logo }: SidebarProps) => {
   const [show, setShow] = useState(false);
   return (
     <div>
@@ -26,6 +31,7 @@ const LeftSidebar = ({ icon }) => {
         <i className={`bi bi-${icon}`}></i>
       </Button>
       <Offcanvas
+        direction={dir}
         isOpen={show}
         toggle={() => {
           setShow(false);
@@ -37,12 +43,12 @@ const LeftSidebar = ({ icon }) => {
             setShow(false);
           }}
         >
-          <CompanyLogo />
+{ logo && <Logo />}
         </OffcanvasHeader>
         <OffcanvasBody>
           <Nav vertical>
             <NavItem>
-                <NavLink href="#">Link</NavLink>
+              <NavLink href="#">Link</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="#">Link</NavLink>
@@ -57,4 +63,4 @@ const LeftSidebar = ({ icon }) => {
   );
 };
 
-export default LeftSidebar;
+export default Sidebar;
