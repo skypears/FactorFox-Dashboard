@@ -3,6 +3,9 @@ import { Container, Col, Table } from "reactstrap";
 import {Column, Section, Header } from "../../elements/Index";
 
 const DashboardPage = () => {
+    React.useEffect(() => {
+      document.title = "FF Dashboard";
+    }, []);
   const chartData = {
     labels: ["0-30", "31-60", "61-90", "90+"],
     datasets: [

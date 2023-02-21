@@ -13,6 +13,9 @@ import { Logo } from "../../elements/Index";
 import "./login.scss";
 
 const ForgotPassword = () => {
+    React.useEffect(() => {
+      document.title = "Forgot Password";
+    }, []);
   return (
     <div className="login">
       <Container>

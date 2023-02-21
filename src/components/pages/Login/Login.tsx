@@ -14,6 +14,9 @@ import "./login.scss";
 
 const Login = () => {
   const [showPass, setShowPass] = React.useState(false);
+  React.useEffect(() => {
+    document.title = "Login";
+  }, []);
   return (
     <div className="login">
       <Container>
