@@ -70,7 +70,7 @@ const ForgotPassword = () => {
                       </Button>
                     </FormGroup>
                     <FormGroup className=" text-center">
-                      <Link to={"/login"} className="px-0 btn btn-link">
+                      <Link to={"/"} className="px-0 btn btn-link">
                         Back to Login
                       </Link>
                     </FormGroup>

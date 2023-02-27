@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+
+import React, { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import {
   Container,
   Row,
@@ -10,10 +11,27 @@ import {
 } from "reactstrap";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Logo } from "../../elements/Index";
+import {validation} from '../../data/validation'
 import "./login.scss";
-
-const Login = () => {
-  const [showPass, setShowPass] = React.useState(false);
+interface LoginProps {
+  callback: (data: any) => void;
+}
+const Login = ({ callback }: LoginProps) => {
+  const submitForm = (e: any) => {
+    e.preventDefault();
+    const errorData = validation(formdata);
+    console.log(errorData);
+    if (Object.keys(errorData).length == 0) {
+      callback(true);
+      return <Navigate to="/dashboard" replace />;
+    } else {
+      setErrorData(errorData);
+    }
+      
+  };
+  const [errordata, setErrorData] = useState({email:'', password:''});
+  const [formdata, setFormData] = useState({email:'', password:''});
+  const [showPass, setShowPass] = useState(false);
   React.useEffect(() => {
     document.title = "Login";
   }, []);
@@ -36,7 +54,6 @@ const Login = () => {
                   </div>
                 </Col>
               </Row>
-
               <Row>
                 <Col sm={10} className="mx-auto">
                   <div className="text-center my-4">
@@ -45,8 +62,7 @@ const Login = () => {
                       Please Sign In to your Account
                     </p>
                   </div>
-
-                  <Form className="mt-5">
+                  <Form className="mt-5" method="post" onSubmit={submitForm}>
                     <FormGroup>
                       <Label for="email" className="d-block d-sm-none">
                         Username
@@ -56,10 +72,22 @@ const Login = () => {
                           <i className="bi bi-person-fill pe-2 "></i>
                           Username
                         </InputGroupText>
-                        <Input type="text" id="email" name="email" placeholder="demouser@factorfox.com" />
+                        <Input
+                          type="text"
+                          id="email"
+                          name="email"
+                          value={formdata.email}
+                          onChange={(e) =>
+                            setFormData({ ...formdata, email: e.target.value })
+                          }
+                          placeholder="demouser@factorfox.com"
+                        />
                       </InputGroup>
+                      {errordata.email && (
+                        <label className="error">{errordata.email}</label>
+                      )}
                     </FormGroup>
-                    <FormGroup className="text-end">
+                    <FormGroup>
                       <Label for="password" className="d-block d-sm-none">
                         Password
                       </Label>
@@ -71,7 +99,15 @@ const Login = () => {
                         <Input
                           type={!showPass ? "password" : "text"}
                           name="password"
-                          id="password" placeholder="********"
+                          id="password"
+                          placeholder="********"
+                          value={formdata.password}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formdata,
+                              password: e.target.value,
+                            })
+                          }
                         />
                         <InputGroupText className="bg-white">
                           <a
@@ -87,14 +123,23 @@ const Login = () => {
                           </a>
                         </InputGroupText>
                       </InputGroup>
-                      <Link to={'/forgotpassword'} className="px-0 btn btn-link">
+                      {errordata.password && (
+                        <label className="error">{errordata.password}</label>
+                      )}
+                      <Link
+                        to={"/forgotpassword"}
+                        className="float-end px-0 btn btn-link"
+                      >
                         Forgot Password?
                       </Link>
                     </FormGroup>
                     <FormGroup className="mt-5 text-center">
-                      <Link to="/" className="px-5 py-2 shadow btn btn-primary">
+                      <Button
+                        type="submit"
+                        className="px-5 py-2 shadow btn btn-primary"
+                      >
                         Login
-                      </Link>
+                      </Button>
                     </FormGroup>
                   </Form>
                 </Col>
@@ -106,5 +151,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
