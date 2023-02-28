@@ -33,7 +33,8 @@ export default function App() {
             <DashboardPage isloggedIn={loggedIn} loginStatus={setLogin} />
           }
         />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        {!loggedIn &&
+        <Route path="/forgotpassword" element={<ForgotPassword />} />}
       </Routes>
     </div>
   );

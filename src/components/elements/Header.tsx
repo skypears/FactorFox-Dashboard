@@ -10,9 +10,7 @@ interface HeaderProps {
   loginStatus: (data: any) => void;
 }
 
-const Header = ({ loginStatus }: HeaderProps) => {
-  console.log(loginStatus);
-  
+const Header = ({ loginStatus }: HeaderProps) => {  
   function logout() {
     Cookies.set("loggedIn", "false");
     loginStatus(false);
@@ -46,7 +44,7 @@ const Header = ({ loginStatus }: HeaderProps) => {
             <Dropdown isOpen={userDDOpen} toggle={toggle}>
               <DropdownToggle caret color="transparent">
                 <span className="pe-none">
-                  <i className="bi bi-person-circle pe-2 fs-5"></i>
+                  <i className="bi bi-person pe-2 fs-5"></i>
                   <span className="d-none d-sm-inline">Atul Yadav</span>
                 </span>
               </DropdownToggle>
@@ -56,7 +54,7 @@ const Header = ({ loginStatus }: HeaderProps) => {
                   <span>Profile</span>
                 </DropdownItem>
                 <DropdownItem onClick={()=>logout()}>
-                  <i className="bi bi-person-circle pe-2"></i>
+                  <i className="bi bi-box-arrow-right pe-2"></i>
                   <span>Logout</span>
                 </DropdownItem>
               </DropdownMenu>

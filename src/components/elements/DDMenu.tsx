@@ -27,14 +27,21 @@ function DDMenu({ direction, title, icon, data, showAlways }: DDMenuProps) {
             {icon && <i className={`bi bi-${icon} pe-2 fs-5`}></i>}
 
             <span className="">
-              <span className={`${!showAlways && 'd-none d-sm-inline'}`}>{title}</span>
+              <span className={`${!showAlways && "d-none d-sm-inline"}`}>
+                {title}
+              </span>
             </span>
           </span>
         </DropdownToggle>
         <DropdownMenu>
           {data.map((item, index) => (
-            <DropdownItem key={index} className="py-2 d-flex border-bottom">
-              {icon && <i className={`pe-2 bi bi-${item.icon}`}></i>}
+           
+            <DropdownItem
+              key={index}
+              className="py-2 d-flex border-bottom"
+              onClick={item.action}
+            >
+              {item.icon && <i className={`pe-2 bi bi-${item.icon}`}></i>}
               <span>{item.name}</span>
             </DropdownItem>
           ))}

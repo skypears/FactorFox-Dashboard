@@ -1,9 +1,10 @@
 export type IMenuItem = {
     name: string;
-    icon?: string;
+  icon?: string;
+  action?: () => void;
 }
 
-export const mainMenuItems = [
+export const mainMenuItems: IMenuItem[] = [
   { name: "Let's Chat", icon: "chat" },
   { name: "Calender", icon: "calendar" },
   { name: "Bank Files", icon: "clipboard" },
@@ -14,7 +15,7 @@ export const mainMenuItems = [
   { name: "Settings", icon: "gear-fill" },
   { name: "Logout", icon: "box-arrow-right" },
 ];
-export const navItems = [
+export const navItems: IMenuItem[] = [
   { name: "Dashboard" },
   { name: "Setup" },
   { name: "Contacts" },
@@ -25,8 +26,8 @@ export const navItems = [
   { name: "Integrations" },
 ];
 
-export const userMenuItems = [
-  { name: "Profile" },
-  { name: "Settings" },
-  { name: "Logout" },
+export const userMenuItems: IMenuItem[] = [
+  { name: "Profile", icon: "person" },
+  { name: "Settings", icon: "gear"},
+  
 ];
