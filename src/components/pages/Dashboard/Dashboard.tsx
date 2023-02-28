@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import { Container, Col, Table } from "reactstrap";
-import {Column, Section, Header } from "../../elements/Index";
+import { Column, Section, Header } from "../../elements/Index";
+interface DBProps {
+  isloggedIn: boolean;
+  loginStatus: (data: any) => void;
+}
 
-const DashboardPage = () => {
-    React.useEffect(() => {
-      document.title = "FF Dashboard";
-    }, []);
+const DashboardPage = ({ isloggedIn, loginStatus }: DBProps) => {
+
   const chartData = {
     labels: ["0-30", "31-60", "61-90", "90+"],
     datasets: [
@@ -46,17 +49,23 @@ const DashboardPage = () => {
       });
     });
   };
-  useEffect(() => setCardHeight(), []);
+  useEffect(() => {
+    document.title = "FF Dashboard";
+    setCardHeight();
+       (!isloggedIn) &&
+         <Navigate to="/" replace />;
+      
+  }, []);
   return (
     <div className="content">
-      <Header />
+      <Header loginStatus={loginStatus} />
       <Container fluid className="pt-3">
         <Section sectionName="Performance Demo">
           <Col xl={4} md={6}>
             <Column type="tab" tabTitles={["ADV", "INV"]}>
               <div>
-                <Table striped responsive size="sm" >
-                  <thead >
+                <Table striped responsive size="sm">
+                  <thead>
                     <tr>
                       <th className="text-left"></th>
                       <th className="text-left"></th>
@@ -66,7 +75,7 @@ const DashboardPage = () => {
                       <th className="text-right">%</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr
                       ng-if="!showCustomfield('CapitalNow')"
                       className="ng-scope"
@@ -177,8 +186,8 @@ const DashboardPage = () => {
                 </Table>
               </div>
               <div>
-                <Table striped responsive size="sm" >
-                  <thead >
+                <Table striped responsive size="sm">
+                  <thead>
                     <tr>
                       <th className="text-left"></th>
                       <th className="text-left"></th>
@@ -188,7 +197,7 @@ const DashboardPage = () => {
                       <th className="text-right">%</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr
                       ng-if="!showCustomfield('CapitalNow')"
                       className="ng-scope"
@@ -313,8 +322,8 @@ const DashboardPage = () => {
           </Col>
           <Col xl={4} md={6}>
             <Column tabTitles={["Day", "Month", "YTD"]} type="tab">
-              <Table striped responsive size="sm" >
-                <tbody >
+              <Table striped responsive size="sm">
+                <tbody>
                   <tr>
                     <td>Invoice Purchased by Invoice Date</td>
                     <td className="text-right">€146,060.00</td>
@@ -366,8 +375,8 @@ const DashboardPage = () => {
           <Col xl={4} md={6}>
             <Column title="Recent Entries">
               <div>
-                <Table striped responsive size="sm" >
-                  <thead >
+                <Table striped responsive size="sm">
+                  <thead>
                     <tr>
                       <th>Schedule</th>
                       <th></th>
@@ -378,7 +387,7 @@ const DashboardPage = () => {
                       <th>Created Date</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr>
                       <td>
                         <a href="#">000S-5565</a>
@@ -442,14 +451,14 @@ const DashboardPage = () => {
           <Col xl={4} md={6}>
             <Column title="Approve Advances">
               <div>
-                <Table striped responsive size="sm" >
-                  <thead >
+                <Table striped responsive size="sm">
+                  <thead>
                     <tr>
                       <th>Payment Type</th>
                       <th>Total Schedule Amount</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr>
                       <td>EFT</td>
                       <td>5,040,942.01</td>
@@ -471,7 +480,7 @@ const DashboardPage = () => {
                       <td>12,455.00</td>
                     </tr>
                   </tbody>
-                  <tfoot >
+                  <tfoot>
                     <tr>
                       <th>Total Amount:</th>
                       <th>210,747,771.36</th>
@@ -484,8 +493,8 @@ const DashboardPage = () => {
           <Col xl={4} md={6}>
             <Column title="Prospects" tabTitles={["Customer", "Client"]}>
               <div>
-                <Table striped responsive size="sm" >
-                  <thead >
+                <Table striped responsive size="sm">
+                  <thead>
                     <tr>
                       <th>Company</th>
                       <th>Motor Carrier</th>
@@ -494,7 +503,7 @@ const DashboardPage = () => {
                       <th>Submitted Date</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr>
                       <td>
                         <a href="#">Aptimust Customer </a>
@@ -544,8 +553,8 @@ const DashboardPage = () => {
                 </Table>
               </div>
               <div>
-                <Table striped responsive size="sm" >
-                  <thead >
+                <Table striped responsive size="sm">
+                  <thead>
                     <tr>
                       <th>Company</th>
                       <th>Motor Carrier</th>
@@ -554,7 +563,7 @@ const DashboardPage = () => {
                       <th>Submitted Date</th>
                     </tr>
                   </thead>
-                  <tbody >
+                  <tbody>
                     <tr>
                       <td>
                         <a href="#">Aptimust Customer </a>

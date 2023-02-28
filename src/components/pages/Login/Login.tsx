@@ -1,6 +1,6 @@
 
-import React, { useState } from "react";
-import { Link, Navigate } from "react-router-dom";
+import React, { useEffect, useReducer, useState } from "react";
+import { Link, Navigate, redirect } from "react-router-dom";
 import {
   Container,
   Row,
@@ -13,26 +13,49 @@ import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Logo } from "../../elements/Index";
 import {validation} from '../../data/validation'
 import "./login.scss";
+
 interface LoginProps {
-  callback: (data: any) => void;
+  loginStatus: (data: any) => void;
 }
-const Login = ({ callback }: LoginProps) => {
+const reducer = (state: any, action: any) => {
+  switch (action.type) {
+    case "setFormData":
+      return {
+        ...state,
+        formdata: action.payload,
+      };
+    case "setErrorData":
+      return {
+        ...state,
+        errordata: action.payload,
+      };
+    case "setShowPass":
+      return {
+        ...state,
+        showPass: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+const Login = ({ loginStatus }: LoginProps) => {
   const submitForm = (e: any) => {
     e.preventDefault();
-    const errorData = validation(formdata);
-    console.log(errorData);
+    const errorData = validation(state.formdata);
     if (Object.keys(errorData).length == 0) {
-      callback(true);
-      return <Navigate to="/dashboard" replace />;
+      loginStatus(true);
     } else {
-      setErrorData(errorData);
+      // setErrorData(errorData);
+      dispatch({ type: "setErrorData", payload: errorData });
     }
-      
   };
-  const [errordata, setErrorData] = useState({email:'', password:''});
-  const [formdata, setFormData] = useState({email:'', password:''});
-  const [showPass, setShowPass] = useState(false);
-  React.useEffect(() => {
+  const [state, dispatch] = useReducer(reducer, {
+    errordata: { email: "", password: "" },
+    formdata: { email: "", password: "" },
+    showPass: false,
+  });
+
+  useEffect(() => {
     document.title = "Login";
   }, []);
   return (
@@ -76,15 +99,20 @@ const Login = ({ callback }: LoginProps) => {
                           type="text"
                           id="email"
                           name="email"
-                          value={formdata.email}
+                          value={state.formdata.email}
                           onChange={(e) =>
-                            setFormData({ ...formdata, email: e.target.value })
-                          }
+                            dispatch({
+                              type: "setFormData",
+                              payload: {
+                                ...state.formdata,
+                                email: e.target.value,
+                              },
+                            })}
                           placeholder="demouser@factorfox.com"
                         />
                       </InputGroup>
-                      {errordata.email && (
-                        <label className="error">{errordata.email}</label>
+                      {state.errordata.email && (
+                        <label className="error">{state.errordata.email}</label>
                       )}
                     </FormGroup>
                     <FormGroup>
@@ -97,34 +125,43 @@ const Login = ({ callback }: LoginProps) => {
                           Password&nbsp;
                         </InputGroupText>
                         <Input
-                          type={!showPass ? "password" : "text"}
+                          type={!state.showPass ? "password" : "text"}
                           name="password"
                           id="password"
                           placeholder="********"
-                          value={formdata.password}
+                          value={state.formdata.password}
                           onChange={(e) =>
-                            setFormData({
-                              ...formdata,
-                              password: e.target.value,
-                            })
+                            dispatch({
+                              type: "setFormData",
+                              payload: {
+                                ...state.formdata,
+                                password: e.target.value,
+                              },
+                          })
                           }
                         />
                         <InputGroupText className="bg-white">
                           <a
                             href="#"
                             className="text-reset"
-                            onClick={() => setShowPass(!showPass)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              dispatch({
+                                type: "setShowPass",
+                                payload: !state.showPass,
+                              });
+                            }}
                           >
                             <i
                               className={`bi bi-${
-                                !showPass ? "eye-slash" : "eye"
+                                !state.showPass ? "eye-slash" : "eye"
                               }`}
                             ></i>
                           </a>
                         </InputGroupText>
                       </InputGroup>
-                      {errordata.password && (
-                        <label className="error">{errordata.password}</label>
+                      {state.errordata.password && (
+                        <label className="error">{state.errordata.password}</label>
                       )}
                       <Link
                         to={"/forgotpassword"}
