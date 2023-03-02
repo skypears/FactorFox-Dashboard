@@ -3,9 +3,6 @@ export const validation = (values: any) => {
   let error: any = {};
   const email_pattern =
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const password_pattern =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
-
   if (values.email == "") {
     error.email = "Email should not be empty";
   }
@@ -16,9 +13,5 @@ export const validation = (values: any) => {
   if (values.password == "") {
     error.password = "Password should not be empty";
   }
-  if (!password_pattern.test(values.password)) {
-    error.password = "Password is not Good";
-  }
-
   return error;
 };
