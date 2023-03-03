@@ -46,14 +46,15 @@ const Login = ({ loginStatus }: LoginProps) => {
     const errorData = validation(state.formdata);
     if (Object.keys(errorData).length == 0) {
       // loginStatus(true);
-      axios
-        .post(
+      fetch
+        (
           "https://xw11vdxrsb.execute-api.us-east-2.amazonaws.com/natfstage/token",
           {
+            method: "POST",
             mode: "no-cors",
             headers: {
               "Content-Type": "application/json",
-              "Access-Control-Allow-Origin": "*",
+             "Access-Control-Allow-Origin": "*",
               "Access-Control-Allow-Methods":
                 "GET,PUT,POST,DELETE,PATCH,OPTIONS",
               "Access-Control-Allow-Headers":
