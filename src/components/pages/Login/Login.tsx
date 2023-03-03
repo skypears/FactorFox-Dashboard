@@ -1,6 +1,7 @@
 
 import React, { useEffect, useReducer, useState } from "react";
 import { Link, Navigate, redirect } from "react-router-dom";
+import axios from "axios";
 import {
   Container,
   Row,
@@ -39,11 +40,31 @@ const reducer = (state: any, action: any) => {
   }
 };
 const Login = ({ loginStatus }: LoginProps) => {
+
   const submitForm = (e: any) => {
     e.preventDefault();
     const errorData = validation(state.formdata);
     if (Object.keys(errorData).length == 0) {
-      loginStatus(true);
+      // loginStatus(true);
+      axios
+        .post(
+          "http://xw11vdxrsb.execute-api.us-east-2.amazonaws.com/natfstage/token",
+          {
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods":
+                "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+              "Access-Control-Allow-Headers":
+                "'Origin, X-Requested-With, Content-Type, Accept'",
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        });
+
     } else {
       // setErrorData(errorData);
       dispatch({ type: "setErrorData", payload: errorData });

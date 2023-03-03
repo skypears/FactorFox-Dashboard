@@ -1,7 +1,6 @@
 export type IMenuItem = {
     name: string;
   icon?: string;
-  action?: () => void;
 }
 
 export const mainMenuItems: IMenuItem[] = [
@@ -29,5 +28,4 @@ export const navItems: IMenuItem[] = [
 export const userMenuItems: IMenuItem[] = [
   { name: "Profile", icon: "person" },
   { name: "Settings", icon: "gear"},
-  
 ];
