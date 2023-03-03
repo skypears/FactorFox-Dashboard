@@ -48,7 +48,7 @@ const Login = ({ loginStatus }: LoginProps) => {
       // loginStatus(true);
       axios
         .post(
-          "http://xw11vdxrsb.execute-api.us-east-2.amazonaws.com/natfstage/token",
+          "https://xw11vdxrsb.execute-api.us-east-2.amazonaws.com/natfstage/token",
           {
             mode: "no-cors",
             headers: {
