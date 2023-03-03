@@ -39,7 +39,7 @@ function DDMenu({ direction, title, icon, data, showAlways }: DDMenuProps) {
             <DropdownItem
               key={index}
               className="py-2 d-flex border-bottom"
-              onClick={item.action}
+              
             >
               {item.icon && <i className={`pe-2 bi bi-${item.icon}`}></i>}
               <span>{item.name}</span>
