@@ -13,7 +13,7 @@ import { Logo } from "../../elements/Index";
 import { validation } from "../../data/validation";
 import "./login.scss";
 import handleApi from "../../data/apireq";
-
+import generateToken from "../../data/generateToken";
 interface LoginProps {
   loginStatus: (data: any) => void;
 }
@@ -63,11 +63,12 @@ const Login = ({ loginStatus }: LoginProps) => {
     const errorData = validation(state.formdata);
     if (Object.keys(errorData).length == 0) {
       dispatch({ type: "setSpinner", payload: true });
-      handleApi(state.formdata).then((res) => {
-        if (res == 200) {
+      handleApi(state.formdata).then(async (res) => {
+        if (res?.status == 200) {
           loginStatus(true);
           localStorage.setItem("user", state.formdata.email);
-        } else if (res == 502) {
+          localStorage.setItem("token", res.token);
+        } else {
           dispatch({
             type: "setErrorData",
             payload: {
@@ -76,9 +77,7 @@ const Login = ({ loginStatus }: LoginProps) => {
             },
           });
           dispatch({ type: "setSpinner", payload: false });
-        } else {
-          dispatch({ type: "setSpinner", payload: false });
-        }
+        } 
       });
     } else {
       // setErrorData(errorData);

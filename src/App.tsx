@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import DashboardPage from "./components/pages/Dashboard/Index";
 import { Login, ForgotPassword } from "./components/pages/Login/Index";
 import { Routes, Route, Navigate } from "react-router-dom";
