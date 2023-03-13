@@ -20,16 +20,16 @@ function DDMenu({ direction, title, icon, data, showAlways }: DDMenuProps) {
   const toggle = () => setDdOpen((prevState) => !prevState);
 
   return (
-    <div className="d-flex">
+    <div>
       <Dropdown isOpen={ddOpen} toggle={toggle} direction={direction}>
         <DropdownToggle caret color="transparent">
           <span className="pe-none">
             {icon && <i className={`bi bi-${icon} pe-2 fs-5`}></i>}
 
-            <span className="">
+            
               <span className={`${!showAlways && "d-none d-sm-inline"}`}>
                 {title}
-              </span>
+              
             </span>
           </span>
         </DropdownToggle>

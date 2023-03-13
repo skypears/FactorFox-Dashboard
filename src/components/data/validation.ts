@@ -1,4 +1,4 @@
-export const validation = (values: any, err?:number) => {
+export const validation = (values: any) => {
   // console.log(values)
   let error: any = {};
   const email_pattern =
@@ -12,6 +12,5 @@ export const validation = (values: any, err?:number) => {
   if (values.password == "") {
     error.password = "Password should not be empty";
   }
-
   return error;
 };

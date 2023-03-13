@@ -8,9 +8,6 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
-  "proxy": {
-    "*": "http://127.0.0.1:5173"
-  },
   "dependencies": {
     "@popperjs/core": "2.11.6",
     "@types/prop-types": "^15.7.5",

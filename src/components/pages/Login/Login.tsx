@@ -17,33 +17,39 @@ import handleApi from "../../data/apireq";
 interface LoginProps {
   loginStatus: (data: any) => void;
 }
-const reducer = (state: any, action: any) => {
-  switch (action.type) {
-    case "setFormData":
-      return {
-        ...state,
-        formdata: action.payload,
-      };
-    case "setErrorData":
-      return {
-        ...state,
-        errordata: action.payload,
-      };
-    case "setShowPass":
-      return {
-        ...state,
-        showPass: action.payload,
-      };
-    case "setSpinner":
-      return {
-        ...state,
-        spinner: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+
 const Login = ({ loginStatus }: LoginProps) => {
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
+  const reducer = (state: any, action: any) => {
+    switch (action.type) {
+      case "setFormData":
+        return {
+          ...state,
+          formdata: action.payload,
+        };
+      case "setErrorData":
+        return {
+          ...state,
+          errordata: action.payload,
+        };
+      case "setShowPass":
+        return {
+          ...state,
+          showPass: action.payload,
+        };
+      case "setSpinner":
+        return {
+          ...state,
+          spinner: action.payload,
+        };
+      default:
+        return state;
+    }
+  };
+
   const [state, dispatch] = useReducer(reducer, {
     errordata: { email: "", password: "" },
     formdata: { email: "atul@factorfox.com", password: "factor" },
@@ -51,9 +57,6 @@ const Login = ({ loginStatus }: LoginProps) => {
     spinner: false,
   });
 
-  useEffect(() => {
-    document.title = "Login";
-  }, []);
 
   const submitForm = (e: any) => {
     e.preventDefault();

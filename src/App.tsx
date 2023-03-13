@@ -11,9 +11,7 @@ export default function App() {
   );
   // use cookie to store login status
   const setLogin = (data: boolean) => {
-    const status = data.toString();
-    Cookies.set("loggedIn", status);
-    
+   data && Cookies.set("loggedIn", data.toString());
     setLoggedIn(data);
   };
   

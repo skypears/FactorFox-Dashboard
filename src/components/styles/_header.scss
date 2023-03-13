@@ -5,6 +5,10 @@
     align-items: center;
     background-color: aliceblue;
     padding: 0 1rem;
+    .dropdown button{
+        font-size: 0.95rem;
+        font-weight: 500;
+    }
 }
 
 
@@ -52,7 +56,15 @@
         }
     }
 }
-
+.main-menu{
+    li.nav-item {
+            font-size: 0.85rem;
+            font-weight: 500;
+            .nav-link{
+                padding: 0.5rem 0.6rem;
+            }
+        }
+}
 @media (max-width: 576px) {
     .header-section {
         padding: 0;
