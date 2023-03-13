@@ -1,7 +1,5 @@
-
 import React, { useEffect, useReducer, useState } from "react";
 import { Link, Navigate, redirect } from "react-router-dom";
-import axios from "axios";
 import {
   Container,
   Row,
@@ -12,8 +10,9 @@ import {
 } from "reactstrap";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Logo } from "../../elements/Index";
-import {validation} from '../../data/validation'
+import { validation } from "../../data/validation";
 import "./login.scss";
+import handleApi from "../../data/apireq";
 
 interface LoginProps {
   loginStatus: (data: any) => void;
@@ -35,51 +34,54 @@ const reducer = (state: any, action: any) => {
         ...state,
         showPass: action.payload,
       };
+    case "setSpinner":
+      return {
+        ...state,
+        spinner: action.payload,
+      };
     default:
       return state;
   }
 };
 const Login = ({ loginStatus }: LoginProps) => {
-
-  const submitForm = (e: any) => {
-    e.preventDefault();
-    const errorData = validation(state.formdata);
-    if (Object.keys(errorData).length == 0) {
-      // loginStatus(true);
-      fetch
-        (
-          "https://xw11vdxrsb.execute-api.us-east-2.amazonaws.com/natfstage/token",
-          {
-            method: "POST",
-            mode: "no-cors",
-            headers: {
-              "Content-Type": "application/json",
-             "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Methods":
-                "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-              "Access-Control-Allow-Headers":
-                "'Origin, X-Requested-With, Content-Type, Accept'",
-            },
-          }
-        )
-        .then((res) => {
-          console.log(res);
-        });
-
-    } else {
-      // setErrorData(errorData);
-      dispatch({ type: "setErrorData", payload: errorData });
-    }
-  };
   const [state, dispatch] = useReducer(reducer, {
     errordata: { email: "", password: "" },
-    formdata: { email: "", password: "" },
+    formdata: { email: "atul@factorfox.com", password: "factor" },
     showPass: false,
+    spinner: false,
   });
 
   useEffect(() => {
     document.title = "Login";
   }, []);
+
+  const submitForm = (e: any) => {
+    e.preventDefault();
+    const errorData = validation(state.formdata);
+    if (Object.keys(errorData).length == 0) {
+      dispatch({ type: "setSpinner", payload: true });
+      handleApi(state.formdata).then((res) => {
+        if (res == 200) {
+          loginStatus(true);
+          localStorage.setItem("user", state.formdata.email);
+        } else if (res == 502) {
+          dispatch({
+            type: "setErrorData",
+            payload: {
+              email: "Invalid Credentials",
+              password: "Invalid Credentials",
+            },
+          });
+          dispatch({ type: "setSpinner", payload: false });
+        } else {
+          dispatch({ type: "setSpinner", payload: false });
+        }
+      });
+    } else {
+      // setErrorData(errorData);
+      dispatch({ type: "setErrorData", payload: errorData });
+    }
+  };
   return (
     <div className="login">
       <Container>
@@ -129,7 +131,8 @@ const Login = ({ loginStatus }: LoginProps) => {
                                 ...state.formdata,
                                 email: e.target.value,
                               },
-                            })}
+                            })
+                          }
                           placeholder="demouser@factorfox.com"
                         />
                       </InputGroup>
@@ -159,7 +162,7 @@ const Login = ({ loginStatus }: LoginProps) => {
                                 ...state.formdata,
                                 password: e.target.value,
                               },
-                          })
+                            })
                           }
                         />
                         <InputGroupText className="bg-white">
@@ -183,7 +186,9 @@ const Login = ({ loginStatus }: LoginProps) => {
                         </InputGroupText>
                       </InputGroup>
                       {state.errordata.password && (
-                        <label className="error">{state.errordata.password}</label>
+                        <label className="error">
+                          {state.errordata.password}
+                        </label>
                       )}
                       <Link
                         to={"/forgotpassword"}
@@ -195,9 +200,21 @@ const Login = ({ loginStatus }: LoginProps) => {
                     <FormGroup className="mt-5 text-center">
                       <Button
                         type="submit"
-                        className="px-5 py-2 shadow btn btn-primary"
+                        className={`px-5 py-2 shadow btn btn-primary`}
+                        disabled={state.spinner}
                       >
-                        Login
+                        {state.spinner ? (
+                          <>
+                            <span
+                              className="spinner-border spinner-border-sm me-2"
+                              role="status"
+                              aria-hidden="true"
+                            ></span>
+                            Logging In...
+                          </>
+                        ) : (
+                          "Login"
+                        )}
                       </Button>
                     </FormGroup>
                   </Form>

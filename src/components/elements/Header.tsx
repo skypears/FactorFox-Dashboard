@@ -13,6 +13,7 @@ interface HeaderProps {
 const Header = ({ loginStatus }: HeaderProps) => {  
   function logout() {
     Cookies.set("loggedIn", "false");
+    localStorage.clear();
     loginStatus(false);
   };
 

@@ -111,7 +111,9 @@ table {
 
 
 
-
+:not(input){
+    user-select: none;
+}
 .accordion-button:focus {
     z-index: 3;
     border-color: transparent;

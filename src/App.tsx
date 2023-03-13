@@ -5,12 +5,16 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import "./components/styles/_all.scss";
 import Cookies from 'js-cookie';
 export default function App() {
-  const [loggedIn, setLoggedIn] = useState(JSON.parse(Cookies.get("loggedIn") || "false"));
+  
+  const [loggedIn, setLoggedIn] = useState(
+    JSON.parse(Cookies.get("loggedIn") || "false")
+  );
   // use cookie to store login status
   const setLogin = (data: boolean) => {
     const status = data.toString();
     Cookies.set("loggedIn", status);
-    setLoggedIn(data); 
+    
+    setLoggedIn(data);
   };
   
   return (
