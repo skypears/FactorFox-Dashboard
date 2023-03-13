@@ -27,7 +27,7 @@ async function handleApi(auth: any) {
     .catch((err) => {
       console.log("error retrieving data", err);
     });
-  console.log(res);
+  // console.log(res);
   return res;
 }
 export default handleApi;
