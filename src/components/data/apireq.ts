@@ -15,7 +15,7 @@ async function handleApi(auth: any) {
     {
       method: "POST",
       body: bodyContent,
-      // headers: headersList,
+      // headers: headersList, // No headers Passing
     }
   )
     .then(async (response) => {

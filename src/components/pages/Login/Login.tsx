@@ -7,6 +7,7 @@ import {
   InputGroup,
   InputGroupText,
   Button,
+  Spinner,
 } from "reactstrap";
 import { Form, FormGroup, Label, Input } from "reactstrap";
 import { Logo } from "../../elements/Index";
@@ -80,7 +81,6 @@ const Login = ({ loginStatus }: LoginProps) => {
         } 
       });
     } else {
-      // setErrorData(errorData);
       dispatch({ type: "setErrorData", payload: errorData });
     }
   };
@@ -136,6 +136,7 @@ const Login = ({ loginStatus }: LoginProps) => {
                             })
                           }
                           placeholder="demouser@factorfox.com"
+                          autoComplete="username"
                         />
                       </InputGroup>
                       {state.errordata.email && (
@@ -201,18 +202,15 @@ const Login = ({ loginStatus }: LoginProps) => {
                     </FormGroup>
                     <FormGroup className="mt-5 text-center">
                       <Button
+                        color={state.spinner?'secondary':"primary" }
                         type="submit"
-                        className={`px-5 py-2 shadow btn btn-primary`}
+                        className={`px-5 py-2 shadow`}
                         disabled={state.spinner}
                       >
                         {state.spinner ? (
                           <>
-                            <span
-                              className="spinner-border spinner-border-sm me-2"
-                              role="status"
-                              aria-hidden="true"
-                            ></span>
-                            Logging In...
+                            <Spinner size="sm">Loading...</Spinner>
+                            {' '}Logging In...
                           </>
                         ) : (
                           "Login"

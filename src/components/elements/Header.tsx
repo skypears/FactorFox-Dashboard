@@ -92,31 +92,34 @@ const Header = ({ loginStatus }: HeaderProps) => {
         )}
 
         <div className="user-section border-start border-end">
-            <Dropdown isOpen={userDDOpen} toggle={toggle} >
-              <DropdownToggle caret color="transparent" outline>
-                <span className="pe-none">
-                  <i className="bi bi-person pe-2 fs-5"></i>
-                  <span className="d-none d-sm-inline small">
-                    <span>Atul Yadav</span>
+          <Dropdown isOpen={userDDOpen} toggle={toggle}>
+            <DropdownToggle caret color="transparent" outline>
+              <span className="pe-none">
+                <i className="bi bi-person pe-2 fs-5"></i>
+                <span className="d-none d-sm-inline small">
+                  <span>
+                    {localStorage.getItem("user")
+                      ? localStorage.getItem("user")
+                      : "DemoUser"}
                   </span>
                 </span>
-              </DropdownToggle>
-              <DropdownMenu>
-                <DropdownItem className="py-2">
-                  <i className="bi bi-person-circle pe-2"></i>
-                  <span>Profile</span>
-                </DropdownItem>
-                <DropdownItem className="py-2">
-                  <i className="bi bi-gear pe-2"></i>
-                  <span>Settings</span>
-                </DropdownItem>
-                <DropdownItem className="py-2" onClick={() => logout()}>
-                  <i className="bi bi-box-arrow-right pe-2"></i>
-                  <span>Logout</span>
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
-         
+              </span>
+            </DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem className="py-2">
+                <i className="bi bi-person-circle pe-2"></i>
+                <span>Profile</span>
+              </DropdownItem>
+              <DropdownItem className="py-2">
+                <i className="bi bi-gear pe-2"></i>
+                <span>Settings</span>
+              </DropdownItem>
+              <DropdownItem className="py-2" onClick={() => logout()}>
+                <i className="bi bi-box-arrow-right pe-2"></i>
+                <span>Logout</span>
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
         <div className="right-sidebar-section">
           <Sidebar icon={"bell-fill"} dir="end" />
