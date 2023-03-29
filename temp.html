@@ -1,78 +1,367 @@
-<div
-  tabindex="-1"
-  role="menu"
-  aria-hidden="false"
-  class="dropdown-menu show"
-  data-popper-placement="bottom-start"
-  style="
-    position: absolute;
-    inset: 0px auto auto 0px;
-    transform: translate3d(0px, 44px, 0px);
-  "
->
-  <button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-chat"></i><span>Let's Chat</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-calendar"></i><span>Calender</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-clipboard"></i><span>Bank Files</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-file-earmark"></i><span>QuickBooks</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-ticket"></i><span>Generate Ticket</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-calendar2-check"></i><span>Ticket Status</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-arrow-counterclockwise"></i
-    ><span>Releases</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-gear-fill"></i><span>Settings</span></button
-  ><button
-    type="button"
-    tabindex="0"
-    role="menuitem"
-    class="py-2 d-flex border-bottom dropdown-item"
-  >
-    <i class="pe-2 bi bi-box-arrow-right"></i><span>Logout</span>
-  </button>
+<div class="uk-grid">
+  <div class="uk-width-medium-1-1">
+    <div class="uk-form-row">
+      <ul class="uk-tab" data-uk-tab="{connect:'#tab-content'}">
+        <li class="uk-active">
+          <a href="#">Oil Field Terms</a>
+        </li>
+        <li><a href="#">OTR Terms</a></li>
+        <li><a href="#">Other Terms</a></li>
+      </ul>
+      
+<ul id="tab-content" class="uk-switcher uk-margin">
+  <li class="uk-active">
+    <div class="uk-grid">
+      <div class="uk-width-medium-1-2">
+        <div class="uk-form-row" style="visibility: hidden">
+          <label></label>
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Advance%</label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-not-empty"
+            value=""
+            spellcheck="false"
+          />
+        </div>
+        <div class="uk-form-row" style="display: none">
+          <label></label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-empty"
+            value=""
+            spellcheck="false"
+          />
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Terms</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.Contacts_Clients_TermsDTO.term -->
+            <option value="59445" class="control-color ng-binding ng-scope">
+              .1% Daily Test
+            </option>
+          </select>
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">PO Terms</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.Contacts_Clients_TermsDTO.term -->
+            <option value="5" class="control-color ng-binding ng-scope">
+              5
+            </option>
+          </select>
+        </div>
+        <br />
+        <div class="uk-form-row" style="display: none">
+          <label class="ng-binding">PO Deduction Type</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.PurchaseOrderDeductionTypeDTOList -->
+            <option
+              value="1"
+              class="control-color ng-binding ng-scope"
+              selected="selected"
+            >
+              Deduct from Invoice Amount
+            </option>
+          </select>
+        </div>
+
+        <br />
+        <div class="uk-form-row">
+          <input
+            type="checkbox"
+            class="check_row ng-pristine ng-untouched ng-valid ng-not-empty"
+          />
+          <label style="width: 90% !important" class="ng-binding"
+            >Discount Deducted From Advances</label
+          >
+        </div>
+        <div class="uk-form-row">
+          &nbsp;<br />
+          <br />
+          <br />
+        </div>
+        <div ng-show="isWrite">
+          <input
+            type="button"
+            class="md-btn md-btn-small md-btn-primary"
+            value="Update Adv. Percent &amp; Term Of Match &amp; Net Term"
+          />
+        </div>
+      </div>
+      <div class="uk-width-medium-1-2">
+        <div class="uk-form-row">
+          <label style="width: 75% !important" class="ng-binding"
+            >Override Term's Minimum Fee</label
+          >
+          <input
+            type="checkbox"
+            class="check_row ng-pristine ng-untouched ng-valid ng-empty"
+          />
+        </div>
+        <div class="uk-form-row">
+          <label style="width: 75% !important" class="ng-binding"
+            >Min. Discount Per Invoice</label
+          >
+          <input
+            type="text"
+            style="width: 23% !important"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-isolate-scope ng-not-empty"
+            value=""
+          />
+        </div>
+        <div class="uk-form-row">
+          <label style="width: 75% !important" class="ng-binding"
+            >Default Unfactored Processing Fee</label
+          >
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+            style="width: 23% !important"
+          >
+            <option
+              value="-1"
+              class="control-color ng-binding"
+              selected="selected"
+            >
+              Please Select
+            </option>
+          </select>
+          <!--<input type="text" style="width: 23% !important;" class="md-input1 input-count" ng-model="model.Contacts_Clients_TermsDTO.default_unfactored_processing_fee" value="" decimals="2" restrict-input="^[0-9]+([,.][0-9]+)?$" />-->
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Default Note</label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-empty"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="uk-grid">
+      <div class="uk-width-medium-1-2">
+        <div class="uk-form-row" style="visibility: hidden">
+          <label></label>
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Advance%</label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-not-empty"
+            value=""
+            spellcheck="false"
+          />
+        </div>
+        <div class="uk-form-row" style="display: none">
+          <label></label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-empty"
+            value=""
+            spellcheck="false"
+          />
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Terms</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.Contacts_Clients_TermsDTO.term -->
+            <option value="59445" class="control-color ng-binding ng-scope">
+              .1% Daily Test
+            </option>
+          </select>
+        </div>
+
+        <br />
+        <div class="uk-form-row" style="display: none">
+          <label class="ng-binding">PO Deduction Type</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.PurchaseOrderDeductionTypeDTOList -->
+            <option
+              value="1"
+              class="control-color ng-binding ng-scope"
+              selected="selected"
+            >
+              Deduct from Invoice Amount
+            </option>
+          </select>
+        </div>
+
+        <br />
+        <div class="uk-form-row">
+          <input
+            type="checkbox"
+            class="check_row ng-pristine ng-untouched ng-valid ng-not-empty"
+            data-md-icheck=""
+          />
+          <label style="width: 90% !important" class="ng-binding"
+            >Discount Deducted From Advances</label
+          >
+        </div>
+        <div class="uk-form-row">
+          &nbsp;<br />
+          <br />
+          <br />
+        </div>
+        <div ng-show="isWrite">
+          <input
+            type="button"
+            class="md-btn md-btn-small md-btn-primary"
+            value="Update Adv. Percent &amp; Term Of Match &amp; Net Term"
+          />
+        </div>
+      </div>
+      <div class="uk-width-medium-1-2">
+        <div class="uk-form-row">
+          <label style="width: 75% !important" class="ng-binding"
+            >Default Unfactored Processing Fee</label
+          >
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+            style="width: 23% !important"
+          >
+            <option
+              value="-1"
+              class="control-color ng-binding"
+              selected="selected"
+            >
+              Please Select
+            </option>
+          </select>
+          <!--<input type="text" style="width: 23% !important;" class="md-input1 input-count" ng-model="model.Contacts_Clients_TermsDTO.default_unfactored_processing_fee" value="" decimals="2" restrict-input="^[0-9]+([,.][0-9]+)?$" />-->
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Default Note</label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-empty"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="uk-grid">
+      <div class="uk-width-medium-1-2">
+        <div class="uk-form-row" style="visibility: hidden">
+          <label></label>
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Advance%</label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-not-empty"
+            value=""
+            spellcheck="false"
+          />
+        </div>
+        <div class="uk-form-row" style="display: none">
+          <label></label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-empty"
+            value=""
+            spellcheck="false"
+          />
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Terms</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.Contacts_Clients_TermsDTO.term -->
+            <option value="59445" class="control-color ng-binding ng-scope">
+              .1% Daily Test
+            </option>
+          </select>
+        </div>
+
+        <br />
+        <div class="uk-form-row" style="display: none">
+          <label class="ng-binding">PO Deduction Type</label>
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+          >
+            <!-- ngRepeat: item in model.PurchaseOrderDeductionTypeDTOList -->
+            <option
+              value="1"
+              class="control-color ng-binding ng-scope"
+              selected="selected"
+            >
+              Deduct from Invoice Amount
+            </option>
+          </select>
+        </div>
+
+        <br />
+        <div class="uk-form-row">
+          <input
+            type="checkbox"
+            class="check_row ng-pristine ng-untouched ng-valid ng-not-empty"
+            data-md-icheck=""
+          />
+          <label style="width: 90% !important" class="ng-binding"
+            >Discount Deducted From Advances</label
+          >
+        </div>
+        <div class="uk-form-row">
+          &nbsp;<br />
+          <br />
+          <br />
+        </div>
+        <div ng-show="isWrite">
+          <input
+            type="button"
+            class="md-btn md-btn-small md-btn-primary"
+            value="Update Adv. Percent &amp; Term Of Match &amp; Net Term"
+          />
+        </div>
+      </div>
+      <div class="uk-width-medium-1-2">
+        <div class="uk-form-row">
+          <label style="width: 75% !important" class="ng-binding"
+            >Default Unfactored Processing Fee</label
+          >
+          <select
+            class="md-input1 ng-pristine ng-untouched ng-valid ng-not-empty"
+            style="width: 23% !important"
+          >
+            <option
+              value="-1"
+              class="control-color ng-binding"
+              selected="selected"
+            >
+              Please Select
+            </option>
+          </select>
+          <!--<input type="text" style="width: 23% !important;" class="md-input1 input-count" ng-model="model.Contacts_Clients_TermsDTO.default_unfactored_processing_fee" value="" decimals="2" restrict-input="^[0-9]+([,.][0-9]+)?$" />-->
+        </div>
+        <div class="uk-form-row">
+          <label class="ng-binding">Default Note</label>
+          <input
+            type="text"
+            class="md-input1 input-count ng-pristine ng-untouched ng-valid ng-empty"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+    </div>
+  </div>
 </div>
+
