@@ -4,7 +4,7 @@ import DashboardPage from "./components/pages/Dashboard/Index";
 import {Login, ForgotPassword} from "./components/pages/Login/Index";
 import { Routes, Route } from "react-router-dom";
 
-const App = () => {
+export default const App = () => {
   return (
     <div className="App">
       <Routes>
@@ -15,4 +15,3 @@ const App = () => {
     </div>
   );
 }
-export default App;
