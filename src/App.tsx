@@ -4,7 +4,7 @@ import DashboardPage from "./components/pages/Dashboard/Index";
 import {Login, ForgotPassword} from "./components/pages/Login/Index";
 import { Routes, Route } from "react-router-dom";
 
-export default function App() {
+function App() {
   return (
     <div className="App">
       <Routes>
@@ -15,3 +15,4 @@ export default function App() {
     </div>
   );
 }
+export default App;
